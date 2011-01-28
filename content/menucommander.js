@@ -55,8 +55,34 @@ GM_MenuCommander.prototype.registerMenuCommand =
     }
 
     GM_log("< GM_MenuCommmander.registerMenuCommand");
+    return this.menuItems.length;
   };
+GM_MenuCommander.prototype.changeMenuCommand =function(cmd,obj) {
+/*
+obj =
+{
+	name:"name to be changed",
+	callback:function(){}
+}
 
+*/
+	
+	if(!this.menuItems[cmd]||!this.menuItems2[cmd])throw new Error("there is no such menu command");
+	if(typeof obj.name == "string"){
+		for (var i = 0; i < this.menuItems.length; i++) {
+		  if (this.menuItems[i].getAttribute("label") == obj.name) {
+			throw new Error("Menu item's name MUST be unique");
+		  }
+		}
+		this.menuItems[cmd].setAttribute("label", obj.name);
+	}
+	if(typeof obj.callback == "function")this.menuItems[cmd]._commandFunc = this.menuItems1[cmd]._commandFunc = obj.callback;
+	
+	return true;
+	  
+}
+  
+  
 GM_MenuCommander.prototype.attach = function() {
   GM_log("> GM_MenuCommander.attach");
 
@@ -134,7 +160,7 @@ GM_MenuCommander.prototype.createKey =
       GM_log("key: " + accelKey);
       key.setAttribute("key", accelKey);
     } else {
-      throw "accelKey must be a numerical keycode or a single character";
+      throw new Error("accelKey must be a numerical keycode or a single character");
     }
 
     GM_log("modifiers: " + modifiers);
