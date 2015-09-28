@@ -105,7 +105,7 @@ IPCScript.prototype.info = function() {
 
 var scripts = [];
 
-const cpmm = Components.classes["@mozilla.org/childprocessmessagemanager;1"]
+var cpmm = Components.classes["@mozilla.org/childprocessmessagemanager;1"]
     .getService(Components.interfaces.nsISyncMessageSender);
 
 
@@ -124,7 +124,11 @@ function updateData(data) {
   var newScripts = data.scripts.map(objectToScript);
   Object.freeze(newScripts);
   scripts = newScripts;
-  IPCScript.prototype.globalExcludes = data.globalExcludes;
+  Object.defineProperty(IPCScript.prototype, "globalExcludes", {
+    get: function () { return data.globalExcludes; },
+    configurable: true,
+    enumerable: true
+  });
 }
 
 
