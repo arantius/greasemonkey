@@ -83,6 +83,27 @@ function loadUserScripts() {
 };
 
 
+function checkUserScriptPermission(uuid, permission) {
+  if (!uuid) {
+    console.warn('checkUserScriptPermission need UUID to check permission.');
+    return false;
+  }
+  let userScript = userScripts[uuid];
+  if (!userScript) {
+    console.warn(
+      'checkUserScriptPermission got non-installed UUID:', uuid);
+    return false;
+  }
+  let grants = userScript.grants;
+  if (!Array.isArray(grants)) {
+    console.warn('checkUserScriptPermission failed grants is not an array.');
+    return false;
+  }
+  return grants.includes(permission);
+}
+window.checkUserScriptPermission = checkUserScriptPermission;
+
+
 function onEditorSaved(message, sender, sendResponse) {
   let userScript = userScripts[message.uuid];
   if (!userScript) {
@@ -123,8 +144,8 @@ window.onUserScriptGet = onUserScriptGet;
 
 
 function onApiGetResourceBlob(message, sender, sendResponse) {
-  if (!message.uuid) {
-    console.warn('onApiGetResourceBlob handler got no UUID.');
+  if (!checkUserScriptPermission(message.uuid, 'GM.getResourceUrl')) {
+    console.warn('GM.getResourceUrl not granted.');
   } else if (!message.resourceName) {
       console.warn('onApiGetResourceBlob handler got no resourceName.');
   } else if (!userScripts[message.uuid]) {

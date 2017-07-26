@@ -35,8 +35,8 @@ function scriptStoreDb(uuid) {
 
 
 function onApiDeleteValue(message, sender, sendResponse) {
-  if (!message.uuid) {
-    console.warn('ApiDeleteValue handler got no UUID.');
+  if (!checkUserScriptPermission(message.uuid, 'GM.deleteValue')) {
+    console.warn('GM.deleteValue not granted.');
     return;
   } else if (!message.key) {
     console.warn('ApiDeleteValue handler got no key.');
@@ -64,8 +64,8 @@ window.onApiDeleteValue = onApiDeleteValue;
 
 
 function onApiGetValue(message, sender, sendResponse) {
-  if (!message.uuid) {
-    console.warn('ApiGetValue handler got no UUID.');
+  if (!checkUserScriptPermission(message.uuid, 'GM.getValue')) {
+    console.warn('GM.getValue not granted.');
     return;
   } else if (!message.key) {
     console.warn('ApiGetValue handler got no key.');
@@ -97,8 +97,8 @@ window.onApiGetValue = onApiGetValue;
 
 
 function onApiListValues(message, sender, sendResponse) {
-  if (!message.uuid) {
-    console.warn('ApiListValues handler got no UUID.');
+  if (!checkUserScriptPermission(message.uuid, 'GM.listValues')) {
+    console.warn('GM.listValues not granted.');
     return;
   }
 
@@ -123,8 +123,8 @@ window.onApiListValues = onApiListValues;
 
 
 function onApiSetValue(message, sender, sendResponse) {
-  if (!message.uuid) {
-    console.warn('ApiSetValue handler got no UUID.');
+  if (!checkUserScriptPermission(message.uuid, 'GM.setValue')) {
+    console.warn('GM.setValue not granted.');
     return;
   } else if (!message.key) {
     console.warn('ApiSetValue handler got no key.');
