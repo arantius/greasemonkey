@@ -1,9 +1,9 @@
 html, body {
   background: lightgrey;
-  height: calc(100% - 8px);
+  height: 100%;
   margin: 0;
   overflow: hidden;
-  padding: 4px;
+  padding: 0;
 }
 
 
@@ -49,16 +49,20 @@ html, body {
   background: #e5e5e5;
 }
 
-body, #editor {
+
+#content {
+  padding: 0 4px 4px 4px;
+}
+
+body, #content, #editor {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
   flex-basis: fill;
-
 }
 #editor {
-  height: 0;
   background: white;
+  height: 0;
 }
 .CodeMirror {
   height: 100% !important;
