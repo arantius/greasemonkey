@@ -1,4 +1,7 @@
 'use strict';
+
+import {_} from '/src/i18n.js';
+
 let gBtnInstall = document.getElementById('btn-install');
 let gDetails = null;
 let gInstallCountdown = 9;

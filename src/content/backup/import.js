@@ -1,4 +1,7 @@
 'use strict';
+
+import {_} from '/src/i18n.js';
+
 async function dbImport(type, bufferPromise) {
   let databaseObject = await loadZipFile(await bufferPromise);
   let userScripts = await browser.runtime.sendMessage(
