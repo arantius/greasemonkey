@@ -37,8 +37,7 @@
  * the terms of any one of the MPL, the GPL or the LGPL.
  *
  * ***** END LICENSE BLOCK ***** */
-
-(function() {
+define('third-party/MatchPattern', require => {
 
 var validProtocols = ['http:', 'https:', 'ftp:', 'file:'];
 var REG_HOST = /^(?:\*\.)?[^*\/]+$|^\*$|^$/;
@@ -121,5 +120,6 @@ MatchPattern.prototype.doMatch = function(url) {
 };
 
 
-window.MatchPattern = MatchPattern;
-})();
+return {
+  'MatchPattern': MatchPattern,
+}});

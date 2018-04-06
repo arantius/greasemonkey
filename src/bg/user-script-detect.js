@@ -1,7 +1,6 @@
 'use strict';
-/* Detect user scripts, possibly open the installation dialog. */
+define('bg/user-script-detect', require => {
 
-(function() {
 
 const gContentTypeRe = (() => {
   const userScriptTypes = [
@@ -25,18 +24,6 @@ function onHeadersReceivedDetectUserScript(requestDetails) {
 
   // https://stackoverflow.com/a/18684302
   return {'redirectUrl': 'javascript:'};
-}
-window.onHeadersReceivedDetectUserScript = onHeadersReceivedDetectUserScript;
-
-
-function responseHasUserScriptType(responseHeaders) {
-  for (let header of responseHeaders) {
-    let headerName = header.name.toLowerCase();
-    if ('content-type' === headerName && gContentTypeRe.test(header.value)) {
-      return true;
-    }
-  }
-  return false;
 }
 
 
@@ -64,4 +51,18 @@ function openInstallDialog(url) {
   });
 }
 
-})();
+
+function responseHasUserScriptType(responseHeaders) {
+  for (let header of responseHeaders) {
+    let headerName = header.name.toLowerCase();
+    if ('content-type' === headerName && gContentTypeRe.test(header.value)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+
+return {
+  'onHeadersReceivedDetectUserScript': onHeadersReceivedDetectUserScript,
+}});

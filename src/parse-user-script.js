@@ -1,4 +1,9 @@
 'use strict';
+define('src/parse-user-script', require => {
+const {SUPPORTED_APIS} = require('/src/bg/api-provider-source.js');
+const {parseMetaLine} = require('/src/parse-meta-line.js');
+
+
 const gAllMetaRegexp = new RegExp(
     '^(\u00EF\u00BB\u00BF)?// ==UserScript==([\\s\\S]*?)^// ==/UserScript==',
     'm');
@@ -11,9 +16,6 @@ function extractMeta(content) {
   return '';
 }
 
-
-// Private implementation.
-(function() {
 
 /** Pull the filename part from the URL, without `.user.js`. */
 function nameFromUrl(url) {
@@ -53,7 +55,7 @@ function prepDefaults(details) {
 
 
 /** Parse the source of a script; produce object of data. */
-window.parseUserScript = function(content, url, failWhenMissing=false) {
+function parseUserScript(content, url, failWhenMissing=false) {
   if (!content) {
     throw new Error('parseUserScript() got no content!');
   }
@@ -161,4 +163,8 @@ window.parseUserScript = function(content, url, failWhenMissing=false) {
   return prepDefaults(details);
 }
 
-})();
+
+return {
+  'extractMeta': extractMeta,
+  'parseUserScript': parseUserScript,
+}});

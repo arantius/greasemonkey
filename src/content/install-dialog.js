@@ -1,4 +1,9 @@
 'use strict';
+define('src/content/install-dialog', require => {
+const {parseUserScript} = require('/src/parse-user-script.js');
+const {DownloadError, Downloader} = require('/src/downloader.js');
+
+
 let gBtnInstall = document.getElementById('btn-install');
 let gDetails = null;
 let gInstallCountdown = 9;
@@ -22,7 +27,7 @@ rivets.bind(document.body, gRvDetails);
 
 let gUserScriptUrl = unescape(document.location.search.substr(1));
 
-let gDownloader = new UserScriptDownloader().setScriptUrl(gUserScriptUrl);
+let gDownloader = new Downloader().setScriptUrl(gUserScriptUrl);
 
 /******************************* PROGRESS BAR ********************************/
 
@@ -122,4 +127,6 @@ gDownloader.start().then(() => {
     gRvDetails.errorList = [_('download_error_unknown')];
   }
   document.body.className = 'error';
+});
+
 });

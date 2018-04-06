@@ -1,4 +1,8 @@
 'use strict';
+define('test/parse-user-script test', require => {
+const {extractMeta, parseUserScript} = require('/src/parse-user-script.js');
+
+
 describe('parse-user-script', () => {
   let urlStr = 'http://www.example.com/example.user.js';
 
@@ -48,4 +52,6 @@ describe('parse-user-script', () => {
       assert.equal(result.homePageUrl, 'http://example.com/home');
     });
   });
+});
+
 });

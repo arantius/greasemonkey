@@ -1,4 +1,8 @@
 'use strict';
+define('test/browser/monkey-menu test', require => {
+const {openUserScriptEditor} = require('/src/util.js');
+
+
 describe('browser/monkey-menu', () => {
   it('has no syntax errors in activate()', () => {
     activate(document.createElement('div'));
@@ -22,4 +26,5 @@ describe('browser/monkey-menu', () => {
     openUserScriptEditor('fake-uuid');
     assert(chrome.tabs.create.calledOnce);
   });
+});
 });

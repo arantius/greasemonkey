@@ -1,5 +1,7 @@
 'use strict';
-// For a line of the form "// @meta", "meta" is in position 4.
+define('src/content/cm-addons/lint-metadata', require => {
+
+
 const META_PREFIX = '// @';
 const META_POSN = META_PREFIX.length;
 
@@ -41,3 +43,7 @@ function lintMetadata(text, options) {
 
   return messages;
 }
+
+return {
+  'lintMetadata': lintMetadata,
+}});

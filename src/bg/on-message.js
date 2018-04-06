@@ -1,13 +1,29 @@
 'use strict';
-/*
-This file sets up a message receiver, expecting to receive messages from
-content scripts.  It dispatches to global methods registered in other
-(background) scripts based on the `name` property of the received message,
-and passes all arguments on to that callback.
-*/
+define('bg/on-message', require => {
 
-(function() {
+const messageHandlers = (() => {
+  let backup = require('/bg/backup.js');
+  let enabled = require('/bg/is-enabled.js');
+  let registry = require('/bg/user-script-registry.js');
+  let valueStore = require('/bg/value-store.js');
+  return {
+    'ApiDeleteValue': valueStore.onApiDeleteValue,
+    'ApiGetValue': valueStore.onApiGetValue,
+    'ApiListValues': valueStore.onApiListValues,
+    'ApiSetValue': valueStore.onApiSetValue,
+    'ExportDatabase': backup.onExportDatabase,
+    'EnabledQuery': enabled.onEnabledQuery,
+    'EnabledSet': enabled.onEnabledSet,
+    'EnabledToggle': enabled.onEnabledToggle,
+    'UserScriptGet': registry.onUserScriptGet,
+    'UserScriptInstall': registry.onUserScriptInstall,
+    'ApiGetResourceBlob': registry.onApiGetResourceBlob,
+    'UserScriptToggleEnabled': registry.onUserScriptToggleEnabled,
+    'UserScriptUninstall': registry.onUserScriptUninstall,
+  };
+})();
 const myPrefix = chrome.runtime.getURL('');
+
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (!message.name) {
@@ -24,14 +40,14 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         + `message from sender "${sender.url}".`);
   }
 
-  var cb = window['on' + message.name];
-  if (!cb) {
+  var handler = messageHandlers[message.name];
+  if (!handler) {
     console.error(
-        'Background has no callback for message:', message, 'sender:', sender);
+        'Background has no handler for message:', message, 'sender:', sender);
     return;
   }
 
-  return cb(message, sender, sendResponse);
+  return handler(message, sender, sendResponse);
 });
 
-})();
+});

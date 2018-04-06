@@ -4,6 +4,7 @@ let gUserScript = null;
 // Change the title of the save icon (and more) to initial values.
 rivets.bind(document, {});
 
+CodeMirror.registerHelper('lint', 'javascript', lintMetadata);
 var editor = CodeMirror(
     document.getElementById('editor'),
     // TODO: Make appropriate options user-configurable.

@@ -1,13 +1,14 @@
 'use strict';
+define('bg/user-script-registry', require => {
+const {EVAL_CONTENT_VERSION, RunnableUserScript} = require('/src/user-script-obj.js');
+
+
 /*
 The registry of installed user scripts.
 
 The `UserScriptRegistry` object owns a set of UserScript objects, and
 exports methods for discovering them and their details.
 */
-
-// Private implementation.
-(function() {
 
 // TODO: Order?
 let userScripts = {};
@@ -157,7 +158,6 @@ function onListUserScripts(message, sender, sendResponse) {
   }
   sendResponse(result);
 };
-window.onListUserScripts = onListUserScripts;
 
 
 function onUserScriptGet(message, sender, sendResponse) {
@@ -170,13 +170,11 @@ function onUserScriptGet(message, sender, sendResponse) {
     sendResponse(userScripts[message.uuid].details);
   }
 };
-window.onUserScriptGet = onUserScriptGet;
 
 
 function onUserScriptInstall(message, sender, sendResponse) {
   return installFromDownloader(message.userScript, message.downloader);
 }
-window.onUserScriptInstall = onUserScriptInstall;
 
 
 function onApiGetResourceBlob(message, sender, sendResponse) {
@@ -208,7 +206,6 @@ function onApiGetResourceBlob(message, sender, sendResponse) {
     });
   }
 };
-window.onApiGetResourceBlob = onApiGetResourceBlob;
 
 
 function onUserScriptToggleEnabled(message, sender, sendResponse) {
@@ -218,7 +215,6 @@ function onUserScriptToggleEnabled(message, sender, sendResponse) {
     return {'enabled': userScript.enabled}
   });
 };
-window.onUserScriptToggleEnabled = onUserScriptToggleEnabled;
 
 
 async function onUserScriptUninstall(message, sender, sendResponse) {
@@ -242,7 +238,6 @@ async function onUserScriptUninstall(message, sender, sendResponse) {
     return ValueStore.deleteStore(message.uuid);
   });
 };
-window.onUserScriptUninstall = onUserScriptUninstall;
 
 
 async function saveUserScript(userScript) {
@@ -334,12 +329,15 @@ function* scriptsToRunAt(urlStr=null, includeDisabled=false) {
 }
 
 
-// Export public API.
-window.UserScriptRegistry = {
+return {
   '_loadUserScripts': loadUserScripts,
   '_saveUserScript': saveUserScript,
+  'onListUserScripts': onListUserScripts,
+  'onUserScriptGet': onUserScriptGet,
+  'onUserScriptInstall': onUserScriptInstall,
+  'onApiGetResourceBlob': onApiGetResourceBlob,
+  'onUserScriptToggleEnabled': onUserScriptToggleEnabled,
+  'onUserScriptUninstall': onUserScriptUninstall,
   'scriptByUuid': scriptByUuid,
   'scriptsToRunAt': scriptsToRunAt,
-};
-
-})();
+}});

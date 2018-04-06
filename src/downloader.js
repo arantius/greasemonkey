@@ -1,4 +1,7 @@
 'use strict';
+define('src/downloader', require => {
+const {parseUserScript} = require('/src/parse-user-script.js');
+
 
 class DownloadError extends Error {
   constructor(failedDownloads) {
@@ -8,9 +11,6 @@ class DownloadError extends Error {
   }
 }
 
-
-// Private implementation.
-(function() {
 
 class Downloader {
   constructor() {
@@ -218,7 +218,6 @@ class Downloader {
         listener => listener.call([this]));
   }
 }
-window.UserScriptDownloader = Downloader;
 
 
 class Download {
@@ -288,4 +287,7 @@ class ImmediateDownload {
   }
 }
 
-})();
+return {
+  'DownloadError': DownloadError,
+  'Downloader': Downloader,
+}});

@@ -1,10 +1,5 @@
 'use strict';
-/*
-This file is responsible for observing content navigation events and triggering
-content script executions.
-
-TODO: Make document_start execution time work as intended.
-*/
+define('bg/execute', require => {
 
 function executeUserscriptOnNavigation(detail) {
   if (false === getGlobalEnabled()) return;
@@ -31,3 +26,8 @@ function executeUserscriptOnNavigation(detail) {
     });
   }
 }
+
+
+return {
+  'executeUserscriptOnNavigation': executeUserscriptOnNavigation,
+}});

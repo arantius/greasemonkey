@@ -1,49 +1,53 @@
 'use strict';
+define('test/third-party/MatchPattern', requre => {
+const {MatchPattern} = require('/third-party/MatchPattern.js');
+
+
 describe('third-party/MatchPattern', () => {
-    describe('invalid patterns', () => {
-      const newPattern = pattern => { return () => new MatchPattern(pattern) };
+  describe('invalid patterns', () => {
+    const newPattern = pattern => { return () => new MatchPattern(pattern) };
 
-      it('http:///foo*bar', () => {
-        // No host provided
-        expect(newPattern('http:///foo*bar'))
-            .to.throw('@match: No host specified for (http:).');
-      });
+    it('http:///foo*bar', () => {
+      // No host provided
+      expect(newPattern('http:///foo*bar'))
+          .to.throw('@match: No host specified for (http:).');
+    });
 
-      it('file://value.com/foo*bar', () => {
-          // Host improperly provided for file
-          expect(newPattern('file://value.com/foo*bar'))
-              .to.throw('@match: Invalid (file:) URI, missing prefix "/"?');
-      });
+    it('file://value.com/foo*bar', () => {
+        // Host improperly provided for file
+        expect(newPattern('file://value.com/foo*bar'))
+            .to.throw('@match: Invalid (file:) URI, missing prefix "/"?');
+    });
 
-      it('http://www.google.com', () => {
-        // No path provided
-        expect(newPattern('http://www.google.com'))
-            .to.throw('@match: Could not parse the pattern.');
-      });
+    it('http://www.google.com', () => {
+      // No path provided
+      expect(newPattern('http://www.google.com'))
+          .to.throw('@match: Could not parse the pattern.');
+    });
 
-      it('http://*foo/bar', () => {
-        // '*' in the host can only be follwed by a '.' or '/'
-        expect(newPattern('http://*foo/bar'))
-            .to.throw('@match: Invalid host specified.');
-      });
+    it('http://*foo/bar', () => {
+      // '*' in the host can only be follwed by a '.' or '/'
+      expect(newPattern('http://*foo/bar'))
+          .to.throw('@match: Invalid host specified.');
+    });
 
-      it('http://foo.*.bar/baz', () => {
-        // '*' in the host must be the first character
-        expect(newPattern('http://foo.*.bar/baz'))
-            .to.throw('@match: Invalid host specified.');
-      });
+    it('http://foo.*.bar/baz', () => {
+      // '*' in the host must be the first character
+      expect(newPattern('http://foo.*.bar/baz'))
+          .to.throw('@match: Invalid host specified.');
+    });
 
-      it('http:/bar.com/*', () => {
-        // Missing scheme separator
-        expect(newPattern('http:/bar.com/*'))
-            .to.throw('@match: Could not parse the pattern.');
-      });
+    it('http:/bar.com/*', () => {
+      // Missing scheme separator
+      expect(newPattern('http:/bar.com/*'))
+          .to.throw('@match: Could not parse the pattern.');
+    });
 
-      it('foo://*/*', () => {
-        // Invalid scheme
-        expect(newPattern('foo://*/*'))
-            .to.throw('@match: Invalid protocol (foo:) specified.');
-      });
+    it('foo://*/*', () => {
+      // Invalid scheme
+      expect(newPattern('foo://*/*'))
+          .to.throw('@match: Invalid protocol (foo:) specified.');
+    });
   });
 
   describe('doMatch()', () => {
@@ -233,4 +237,5 @@ describe('third-party/MatchPattern', () => {
       matches(pattern, 'http://sub.example.net:1234/');
     });
   });
+});
 });

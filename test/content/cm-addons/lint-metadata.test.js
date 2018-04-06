@@ -1,4 +1,8 @@
 'use strict';
+define('test/content/cm-addons/lint-metadata test', require => {
+const {lintMetadata} = require('/src/content/cm-addons/lint-metadata.js');
+
+
 describe('content/cm-addons/lint-metadata', () => {
   function lintOneBadMetaLine(v) {
     let src = `// ==UserScript==\n// @${v}\n// ==/UserScript==\n`;
@@ -43,4 +47,5 @@ describe('content/cm-addons/lint-metadata', () => {
     chai.expect(result.message).to.have.string('Expected "author",');
     chai.expect(result.message).to.have.string('or "version" but');
   });
+});
 });

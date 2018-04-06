@@ -1,8 +1,5 @@
 'use strict';
-/* Functions for exporting GM database. */
-
-// Private implementation.
-(function() {
+define('bg/backup', require => {
 
 function onExportDatabase() {
   let scriptsData = [];
@@ -11,17 +8,16 @@ function onExportDatabase() {
     scriptsData.push(userScriptData(userScript));
   }
 
-  return Promise.all(scriptsData).then(
-      databaseObject => exportZipBlob(databaseObject)
-  ).then(zipBlob => {
-    return chrome.downloads.download({
-      'filename': exportFilename(),
-      'saveAs': true,
-      'url': URL.createObjectURL(zipBlob)
-    });
-  });
+  return Promise.all(scriptsData)
+      .then(databaseObject => exportZipBlob(databaseObject))
+      .then(zipBlob => {
+        return chrome.downloads.download({
+          'filename': exportFilename(),
+          'saveAs': true,
+          'url': URL.createObjectURL(zipBlob)
+        });
+      });
 }
-window.onExportDatabase = onExportDatabase;
 
 
 // Since `data#toLocaleFormat()` is deprecated, and therefore C style
@@ -30,14 +26,14 @@ window.onExportDatabase = onExportDatabase;
 function exportFilename() {
   let date = new Date();
   return 'Greasemonkey_backup_'
-    + date.getFullYear().toString()
-    + (date.getMonth() + 1).toString().padStart(2, '0')
-    + date.getDate().toString().padStart(2, '0')
-    + '_'
-    + date.getHours().toString().padStart(2, '0')
-    + date.getMinutes().toString().padStart(2, '0')
-    + date.getSeconds().toString().padStart(2, '0')
-    + '.zip';
+      + date.getFullYear().toString()
+      + (date.getMonth() + 1).toString().padStart(2, '0')
+      + date.getDate().toString().padStart(2, '0')
+      + '_'
+      + date.getHours().toString().padStart(2, '0')
+      + date.getMinutes().toString().padStart(2, '0')
+      + date.getSeconds().toString().padStart(2, '0')
+      + '.zip';
 }
 
 
@@ -87,7 +83,7 @@ async function userScriptData(userScript) {
 }
 
 
-// Retrieve value store data for the uuid
+// Retrieve value store data for the UUID.
 async function userScriptStore(uuid) {
   let storeKeys = await ValueStore.listValues(uuid);
   let storeValues =
@@ -100,4 +96,6 @@ async function userScriptStore(uuid) {
   return keyPairs;
 }
 
-})();
+return {
+  'onExportDatabase': onExportDatabase,
+}});

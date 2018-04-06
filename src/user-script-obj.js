@@ -1,4 +1,6 @@
 'use strict';
+define('src/user-script-obj', require => {
+
 /*
 The UserScript object represents a user script, and all content and behaviors.
 
@@ -12,9 +14,6 @@ reference any other objects from this file.
 // be re-calculated.
 const EVAL_CONTENT_VERSION = 12;
 
-
-// Private implementation.
-(function() {
 
 const extensionVersion = chrome.runtime.getManifest().version;
 const aboutBlankRegexp = /^about:blank/;
@@ -101,7 +100,7 @@ const userScriptKeys = [
     'description', 'downloadUrl', 'excludes', 'grants', 'homePageUrl',
     'includes', 'matches', 'name', 'namespace', 'noFrames', 'runAt', 'version'];
 /// Base class, fields and methods common to all kinds of UserScript objects.
-window.RemoteUserScript = class RemoteUserScript {
+class RemoteUserScript {
   constructor(vals) {
     // Fixed details parsed from the ==UserScript== section.
     this._description = null;
@@ -188,8 +187,7 @@ const runnableUserScriptKeys = [
     'userExcludes', 'userIncludes', 'userMatches', 'uuid'];
 /// A _UserScript, plus user settings, plus (eval'able) contents.  Should
 /// never be called except by `UserScriptRegistry.`
-window.RunnableUserScript = class RunnableUserScript
-    extends window.RemoteUserScript {
+class RunnableUserScript extends RemoteUserScript {
   constructor(details) {
     super(details);
 
@@ -236,8 +234,7 @@ const editableUserScriptKeys = [
     'parsedDetails', 'content', 'requiresContent'];
 /// A _UserScript, plus user settings, plus all requires' contents.  Should
 /// never be called except by `UserScriptRegistry.`
-window.EditableUserScript = class EditableUserScript
-    extends window.RunnableUserScript {
+class EditableUserScript extends RunnableUserScript {
   constructor(details) {
     super(details);
 
@@ -341,4 +338,9 @@ window.EditableUserScript = class EditableUserScript
   }
 }
 
-})();
+
+return {
+  'EVAL_CONTENT_VERSION': EVAL_CONTENT_VERSION,
+  'EditableUserScript': EditableUserScript,
+  'RunnableUserScript': RunnableUserScript,
+}});

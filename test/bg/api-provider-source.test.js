@@ -1,5 +1,13 @@
 'use strict';
+define('test/bg/api-provider-source', require => {
+const {SUPPORTED_APIS, apiProviderSource}
+    = require('/src/bg/api-provider-source.js');
+
+
 describe('bg/api-provider-source', () => {
+  console.log(1);
+  console.log(2);
+
   for (let apiName of SUPPORTED_APIS) {
     it('handles ' + apiName, () => {
       let source = apiProviderSource({'grants': [apiName]});
@@ -16,4 +24,5 @@ describe('bg/api-provider-source', () => {
     let source = apiProviderSource({'grants': []});
     assert(source.match(/No grants/));
   });
+});
 });

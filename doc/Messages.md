@@ -94,7 +94,7 @@ Send this to toggle the global enabled status.  No data.
 
 # ExportDatabase
 Sent by: `browser/monkey-menu.js`
-Received by: `bg/export-db.js`
+Received by: `bg/backup.js`
 
 Send with no data to export the entire Userscript dataset.
 

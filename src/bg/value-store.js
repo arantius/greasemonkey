@@ -1,13 +1,6 @@
 'use strict';
-/*
-The backing implementation for getValue/setValue (and listValues
-and deleteValue).  In the background process, receives messages sent from
-content.  Refers to persistence in IndexedDB and returns the appropriate
-result to the sender.
-*/
+define('bg/user-script-registry', require => {
 
-// Private implementation.
-(function() {
 
 const valueStoreName = 'values';
 
@@ -169,7 +162,6 @@ function onApiDeleteValue(message, sender, sendResponse) {
   // Return a promise
   return deleteValue(message.uuid, message.key);
 };
-window.onApiDeleteValue = onApiDeleteValue;
 
 
 function onApiGetValue(message, sender, sendResponse) {
@@ -185,7 +177,6 @@ function onApiGetValue(message, sender, sendResponse) {
   // Return a promise
   return getValue(message.uuid, message.key);
 };
-window.onApiGetValue = onApiGetValue;
 
 
 function onApiListValues(message, sender, sendResponse) {
@@ -198,7 +189,6 @@ function onApiListValues(message, sender, sendResponse) {
   // Return a promise
   return listValues(message.uuid);
 };
-window.onApiListValues = onApiListValues;
 
 
 function onApiSetValue(message, sender, sendResponse) {
@@ -214,6 +204,11 @@ function onApiSetValue(message, sender, sendResponse) {
   // Return a promise
   return setValue(message.uuid, message.key, message.value);
 };
-window.onApiSetValue = onApiSetValue;
 
-})();
+
+return {
+  'onApiDeleteValue': onApiDeleteValue,
+  'onApiGetValue': onApiGetValue,
+  'onApiListValues': onApiListValues,
+  'onApiSetValue': onApiSetValue,
+}});

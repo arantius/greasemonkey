@@ -1,4 +1,5 @@
 'use strict';
+define('bg/api-provider-source', require => {
 /*
 Generate the string source of the script-side API providers for a given
 user script.  This source is concatenated with the script itself for injection.
@@ -7,7 +8,14 @@ This will be an anonymous and immediately called function which exports objects
 to the global scope (the `this` object).  It ...
 */
 
-(function() {
+const SUPPORTED_APIS = new Set([
+    'GM.deleteValue', 'GM.getValue', 'GM.listValues', 'GM.setValue',
+    'GM.getResourceUrl',
+    'GM.notification',
+    'GM.openInTab',
+    'GM.setClipboard',
+    'GM.xmlHttpRequest',
+    ]);
 
 function apiProviderSource(userScript) {
   const grants = userScript.grants;
@@ -254,4 +262,7 @@ function GM_xmlHttpRequest(d) {
   // TODO: Return an object which can be `.abort()`ed.
 }
 
-})();
+return {
+  'SUPPORTED_APIS': SUPPORTED_APIS,
+  'apiProviderSource': apiProviderSource,
+}});

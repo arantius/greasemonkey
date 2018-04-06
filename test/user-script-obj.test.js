@@ -1,4 +1,8 @@
 'use strict';
+define('test/user-script-obj test', require => {
+const {RunnableUserScript} = require('/src/user-script-obj.js');
+
+
 describe('user-script-obj', () => {
   describe('EditableUserScript.calculateEvalContent()', () => {
     let scriptContent = `
@@ -166,4 +170,5 @@ gt_one(2);
       }
     });
   });
+});
 });

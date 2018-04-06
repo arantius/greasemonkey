@@ -1,5 +1,5 @@
 'use strict';
-// This only works in the background, when UserScriptRegistry is available.
+define('bg/util', require => {
 
 // The user script of `userScriptUuid` has a @grant for `method`, or throw.
 function checkApiCallAllowed(method, userScriptUuid) {
@@ -8,3 +8,8 @@ function checkApiCallAllowed(method, userScriptUuid) {
     throw new Error(_('SCRIPT_does_not_grant_METHOD', userScript, method));
   }
 }
+
+
+return {
+  'checkApiCallAllowed': checkApiCallAllowed,
+}});

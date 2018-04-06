@@ -1,4 +1,8 @@
 'use strict';
+define('test/downloader', require => {
+const {Downloader} = require('/src/downloader.js');
+
+
 describe('downloader', () => {
   const fakeReqs = [];
   let fakeXhr = null;
@@ -16,7 +20,7 @@ describe('downloader', () => {
   });
 
   it('downloads the given URL', async () => {
-    let downloader = new UserScriptDownloader();
+    let downloader = new Downloader();
     downloader.setScriptUrl('http://example/test.user.js');
 
     let result = downloader.start();
@@ -31,7 +35,7 @@ describe('downloader', () => {
   });
 
   it('downloads @require', async () => {
-    let downloader = new UserScriptDownloader();
+    let downloader = new Downloader();
     downloader.setScriptUrl('http://example/test.user.js');
     downloader.setScriptContent(
         '// ==UserScript==\n// @require other.js\n// ==/UserScript==');
@@ -48,4 +52,5 @@ describe('downloader', () => {
 
     return result;
   });
+});
 });

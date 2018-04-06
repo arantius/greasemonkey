@@ -10,3 +10,9 @@ navigator.storage.persist = () => Promise.resolve(true);
 function _(str) {
   return str;
 }
+
+require.config({
+  baseUrl: '/base',  // Karma serves files under /base by default.
+  //deps: Object.keys(window.__karma__.files),
+  callback: window.__karma__.start,
+});
