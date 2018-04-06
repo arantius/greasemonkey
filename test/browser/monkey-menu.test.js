@@ -1,6 +1,6 @@
 'use strict';
-define('test/browser/monkey-menu test', require => {
-const {openUserScriptEditor} = require('/src/util.js');
+define('test/browser/monkey-menu', require => {
+const {openUserScriptEditor} = require('src/util');
 
 
 describe('browser/monkey-menu', () => {

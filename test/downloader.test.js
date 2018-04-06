@@ -1,9 +1,13 @@
 'use strict';
-define('test/downloader', require => {
-const {Downloader} = require('/src/downloader.js');
-
-
 describe('downloader', () => {
+  let Downloader;
+  before(done => {
+    require(['src/downloader'], d => {
+      Downloader = d.Downloader;
+      done();
+    })
+  });
+
   const fakeReqs = [];
   let fakeXhr = null;
 
@@ -21,7 +25,7 @@ describe('downloader', () => {
 
   it('downloads the given URL', async () => {
     let downloader = new Downloader();
-    downloader.setScriptUrl('http://example/test.user.js');
+    downloader.setScriptUrl('http://example/test.user');
 
     let result = downloader.start();
     assert.equal(fakeReqs.length, 1);
@@ -36,7 +40,7 @@ describe('downloader', () => {
 
   it('downloads @require', async () => {
     let downloader = new Downloader();
-    downloader.setScriptUrl('http://example/test.user.js');
+    downloader.setScriptUrl('http://example/test.user');
     downloader.setScriptContent(
         '// ==UserScript==\n// @require other.js\n// ==/UserScript==');
 
@@ -52,5 +56,4 @@ describe('downloader', () => {
 
     return result;
   });
-});
 });

@@ -1,4 +1,8 @@
 'use strict';
+define('test/bg/value-store', require => {
+const ValueStore = require('src/bg/value-store');
+
+
 describe('bg/value-store', () => {
   let storeName = 'gmTests';
 
@@ -55,4 +59,5 @@ describe('bg/value-store', () => {
               .to.have.members(testKeys);
         });
   });
+});
 });

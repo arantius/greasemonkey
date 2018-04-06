@@ -1,6 +1,6 @@
 'use strict';
-define('test/content/cm-addons/lint-metadata test', require => {
-const {lintMetadata} = require('/src/content/cm-addons/lint-metadata.js');
+define('test/content/cm-addons/lint-metadata', require => {
+const {lintMetadata} = require('src/content/cm-addons/lint-metadata');
 
 
 describe('content/cm-addons/lint-metadata', () => {

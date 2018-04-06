@@ -1,4 +1,12 @@
 'use strict';
+define('test/bg/is-enabled', require => {
+const {
+  getGlobalEnabled,
+  setGlobalEnabled,
+  toggleGlobalEnabled,
+} = require('src/bg/is-enabled');
+
+
 describe('bg/is-enabled', () => {
   // Leave GM globally enabled after these tests run.
   after(() => {
@@ -18,4 +26,5 @@ describe('bg/is-enabled', () => {
     toggleGlobalEnabled();
     assert.equal(getGlobalEnabled(), false);
   });
+});
 });

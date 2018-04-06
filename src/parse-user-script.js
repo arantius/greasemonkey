@@ -1,7 +1,7 @@
 'use strict';
 define('src/parse-user-script', require => {
-const {SUPPORTED_APIS} = require('/src/bg/api-provider-source.js');
-const {parseMetaLine} = require('/src/parse-meta-line.js');
+const {SUPPORTED_APIS} = require('src/bg/api-provider-source');
+const {parseMetaLine} = require('src/parse-meta-line');
 
 
 const gAllMetaRegexp = new RegExp(

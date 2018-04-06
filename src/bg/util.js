@@ -1,5 +1,5 @@
 'use strict';
-define('bg/util', require => {
+define('src/bg/util', require => {
 
 // The user script of `userScriptUuid` has a @grant for `method`, or throw.
 function checkApiCallAllowed(method, userScriptUuid) {

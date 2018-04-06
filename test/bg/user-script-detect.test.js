@@ -1,4 +1,8 @@
 'use strict';
+define('test/bg/user-script-detect', require => {
+const {onHeadersReceivedDetectUserScript} = require('src/bg/user-script-detect');
+
+
 describe('bg/user-script-detect', () => {
   it('opens install dialog (on linux)', () => {
     chrome.windows.create.reset();
@@ -31,4 +35,5 @@ describe('bg/user-script-detect', () => {
 
     assert(chrome.tabs.create.calledOnce);
   });
+});
 });

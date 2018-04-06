@@ -1,6 +1,6 @@
 'use strict';
-define('bg/user-script-registry', require => {
-const {EVAL_CONTENT_VERSION, RunnableUserScript} = require('/src/user-script-obj.js');
+define('src/bg/user-script-registry', require => {
+const {EVAL_CONTENT_VERSION, RunnableUserScript} = require('src/user-script-obj');
 
 
 /*

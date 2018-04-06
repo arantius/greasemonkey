@@ -38,6 +38,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 define('third-party/MatchPattern', require => {
+const {GM_convert2RegExp} = require('third-party/convert2RegExp');
+
 
 var validProtocols = ['http:', 'https:', 'ftp:', 'file:'];
 var REG_HOST = /^(?:\*\.)?[^*\/]+$|^\*$|^$/;

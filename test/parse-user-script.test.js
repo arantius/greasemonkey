@@ -1,10 +1,15 @@
 'use strict';
-define('test/parse-user-script test', require => {
-const {extractMeta, parseUserScript} = require('/src/parse-user-script.js');
-
-
 describe('parse-user-script', () => {
+  let extractMeta, parseUserScript;
   let urlStr = 'http://www.example.com/example.user.js';
+
+  before(done => {
+    require(['src/parse-user-script'], p => {
+      extractMeta = p.extractMeta;
+      parseUserScript = p.parseUserScript;
+      done();
+    });
+  });
 
   describe('extractMeta()', () => {
     it('does not throw even when script content is null', () => {
@@ -32,7 +37,7 @@ describe('parse-user-script', () => {
 
     it('uses download host as namespace by default', () => {
       let result = parseUserScript(
-          '// Empty script.', 'http://www.example.org/example.user.js');
+          '// Empty script.', 'http://www.example.org/example.user');
       assert.equal(result.namespace, 'www.example.org');
     });
 
@@ -52,6 +57,4 @@ describe('parse-user-script', () => {
       assert.equal(result.homePageUrl, 'http://example.com/home');
     });
   });
-});
-
 });

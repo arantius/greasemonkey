@@ -1,5 +1,5 @@
 'use strict';
-define('bg/is-enabled', require => {
+define('src/bg/is-enabled', require => {
 
 let isEnabled = true;
 chrome.storage.local.get('globalEnabled', v => {

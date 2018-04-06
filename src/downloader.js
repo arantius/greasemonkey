@@ -1,6 +1,6 @@
 'use strict';
 define('src/downloader', require => {
-const {parseUserScript} = require('/src/parse-user-script.js');
+const {parseUserScript} = require('src/parse-user-script');
 
 
 class DownloadError extends Error {

@@ -1,5 +1,5 @@
 'use strict';
-define('bg/backup', require => {
+define('src/bg/backup', require => {
 
 function onExportDatabase() {
   let scriptsData = [];

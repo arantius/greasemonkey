@@ -1,7 +1,7 @@
 'use strict';
 define('src/content/install-dialog', require => {
-const {parseUserScript} = require('/src/parse-user-script.js');
-const {DownloadError, Downloader} = require('/src/downloader.js');
+const {parseUserScript} = require('src/parse-user-script');
+const {DownloadError, Downloader} = require('src/downloader');
 
 
 let gBtnInstall = document.getElementById('btn-install');

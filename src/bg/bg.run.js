@@ -1,16 +1,16 @@
 'use strict';
-define('bg/bg.run', require => {
+define('src/bg/bg.run', require => {
 
-const {executeUserscriptOnNavigation} = require('/bg/execute.js');
+const {executeUserscriptOnNavigation} = require('src/bg/execute');
 chrome.webNavigation.onCommitted.addListener(executeUserscriptOnNavigation);
 
-const {onHeadersReceivedDetectUserScript} = require('/bg/user-script-detect.js');
+const {onHeadersReceivedDetectUserScript} = require('src/bg/user-script-detect');
 chrome.webRequest.onHeadersReceived.addListener(
   onHeadersReceivedDetectUserScript,
   {'urls': ['*://*/*.user.js'], 'types': ['main_frame']},
   ['blocking', 'responseHeaders']);
 
-const UserScriptRegistry = require('/bg/user-script-registry.js');
+const UserScriptRegistry = require('src/bg/user-script-registry');
 UserScriptRegistry._loadUserScripts();
 
 function welcome() {

@@ -1,4 +1,8 @@
 'use strict';
+define('test/bg/user-script-registry', require => {
+const {EditableUserScript} = require('src/user-script-obj');
+
+
 describe('bg/user-script-registry', () => {
   afterEach((done) => {
     let req = indexedDB.deleteDatabase('greasemonkey');
@@ -55,4 +59,5 @@ describe('bg/user-script-registry', () => {
     await onUserScriptUninstall({'uuid': userScript.uuid}, null, null);
     assert.isNotOk(scriptNamed('exponential'));
   }).timeout(5000);
+});
 });

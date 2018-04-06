@@ -1,11 +1,11 @@
 'use strict';
-define('bg/on-message', require => {
+define('src/bg/on-message', require => {
 
 const messageHandlers = (() => {
-  let backup = require('/bg/backup.js');
-  let enabled = require('/bg/is-enabled.js');
-  let registry = require('/bg/user-script-registry.js');
-  let valueStore = require('/bg/value-store.js');
+  let backup = require('src/bg/backup');
+  let enabled = require('src/bg/is-enabled');
+  let registry = require('src/bg/user-script-registry');
+  let valueStore = require('src/bg/value-store');
   return {
     'ApiDeleteValue': valueStore.onApiDeleteValue,
     'ApiGetValue': valueStore.onApiGetValue,

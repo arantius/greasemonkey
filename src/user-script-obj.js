@@ -1,13 +1,7 @@
 'use strict';
 define('src/user-script-obj', require => {
+//const {GM_convert2RegExp} = require('third-party/convert2RegExp');
 
-/*
-The UserScript object represents a user script, and all content and behaviors.
-
-Content scripts can and should use `RemoteUserScript`, for display during
-the install process.  Nothing else besides `UserScriptRegistry` should ever
-reference any other objects from this file.
-*/
 
 // Increment this number when updating `calculateEvalContent()`.  If it
 // is higher than it was when eval content was last calculated, it will
@@ -342,5 +336,6 @@ class EditableUserScript extends RunnableUserScript {
 return {
   'EVAL_CONTENT_VERSION': EVAL_CONTENT_VERSION,
   'EditableUserScript': EditableUserScript,
+  'RemoteUserScript': RemoteUserScript,
   'RunnableUserScript': RunnableUserScript,
 }});

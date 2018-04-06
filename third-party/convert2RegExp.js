@@ -24,8 +24,8 @@
  * Rue <quill@ethereal.net>
  *
  * ***** END LICENSE BLOCK ***** */
+//define('third-party/convert2RegExp', require => {
 
-(function() {
 
 var tldRegExp = /^([^:]+:\/\/[^\/]+)\\.tld(\/.*)?$/;
 
@@ -79,6 +79,8 @@ function GM_convert2RegExp(pattern, uri, forceGlob) {
 
   return new RegExp(res + "$", "i");
 }
-window.GM_convert2RegExp = GM_convert2RegExp;
 
-})();
+
+//return {
+//  'GM_convert2RegExp': GM_convert2RegExp,
+//}})();

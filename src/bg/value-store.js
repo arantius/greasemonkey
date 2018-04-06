@@ -1,5 +1,5 @@
 'use strict';
-define('bg/user-script-registry', require => {
+define('src/bg/user-script-registry', require => {
 
 
 const valueStoreName = 'values';

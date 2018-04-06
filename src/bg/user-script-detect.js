@@ -1,5 +1,5 @@
 'use strict';
-define('bg/user-script-detect', require => {
+define('src/bg/user-script-detect', require => {
 
 
 const gContentTypeRe = (() => {

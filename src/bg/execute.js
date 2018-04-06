@@ -1,5 +1,8 @@
 'use strict';
-define('bg/execute', require => {
+define('src/bg/execute', require => {
+const {getGlobalEnabled} = require('src/bg/is-enabled');
+const UserScriptRegistry = require('src/bg/user-script-registry');
+
 
 function executeUserscriptOnNavigation(detail) {
   if (false === getGlobalEnabled()) return;

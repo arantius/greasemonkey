@@ -1,6 +1,6 @@
 'use strict';
 define('test/third-party/MatchPattern', requre => {
-const {MatchPattern} = require('/third-party/MatchPattern.js');
+const {MatchPattern} = require('third-party/MatchPattern');
 
 
 describe('third-party/MatchPattern', () => {

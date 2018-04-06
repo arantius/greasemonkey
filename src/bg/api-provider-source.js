@@ -1,5 +1,5 @@
 'use strict';
-define('bg/api-provider-source', require => {
+define('src/bg/api-provider-source', require => {
 /*
 Generate the string source of the script-side API providers for a given
 user script.  This source is concatenated with the script itself for injection.
