@@ -1,5 +1,5 @@
 'use strict';
-(function() {
+
 const wantToShowUrl
     = 'https://www.greasespot.net/2017/09/greasemonkey-4-announcement.html';
 
@@ -16,5 +16,3 @@ chrome.storage.local.get('previousWelcomeUrl', items => {
     });
   }
 });
-
-})();

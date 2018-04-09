@@ -25,13 +25,10 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-(function() {
-
-var tldRegExp = /^([^:]+:\/\/[^\/]+)\\.tld(\/.*)?$/;
+let tldRegExp = /^([^:]+:\/\/[^\/]+)\\.tld(\/.*)?$/;
 
 
-// Exposed outer method takes regex as string, and handles the magic TLD.
-function GM_convert2RegExp(pattern, uri, forceGlob) {
+export function GM_convert2RegExp(pattern, uri, forceGlob) {
   var s = new String(pattern);
 
   if (!forceGlob && '/' == s.substr(0, 1) && '/' == s.substr(-1, 1)) {
@@ -73,12 +70,8 @@ function GM_convert2RegExp(pattern, uri, forceGlob) {
     }
   }
 
-
   // TODO: Accurate ".tld" support; blocked by http://bugzil.la/1315558
   res = res.replace(tldRegExp, '$1(.[a-z]{1,6}){1,3}$2');
 
   return new RegExp(res + "$", "i");
 }
-window.GM_convert2RegExp = GM_convert2RegExp;
-
-})();

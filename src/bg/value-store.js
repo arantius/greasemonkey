@@ -6,44 +6,66 @@ content.  Refers to persistence in IndexedDB and returns the appropriate
 result to the sender.
 */
 
-// Private implementation.
-(function() {
+import {checkApiCallAllowed} from '/src/bg/util.js';
+import {registerMessageHandler} from '/src/bg/on-message.js';
+
+
+registerMessageHandler('ApiDeleteValue', (message, sender, sendResponse) => {
+  if (!message.uuid) {
+    console.warn('ApiDeleteValue handler got no UUID.');
+    return;
+  } else if (!message.key) {
+    console.warn('ApiDeleteValue handler got no key.');
+    return;
+  }
+  checkApiCallAllowed('GM.deleteValue', message.uuid);
+
+  return deleteValue(message.uuid, message.key);
+});
+
+
+registerMessageHandler('ApiGetValue', (message, sender, sendResponse) => {
+  if (!message.uuid) {
+    console.warn('ApiGetValue handler got no UUID.');
+    return;
+  } else if (!message.key) {
+    console.warn('ApiGetValue handler got no key.');
+    return;
+  }
+  checkApiCallAllowed('GM.getValue', message.uuid);
+
+  return getValue(message.uuid, message.key);
+});
+
+
+registerMessageHandler('ApiListValues', (message, sender, sendResponse) => {
+  if (!message.uuid) {
+    console.warn('ApiListValues handler got no UUID.');
+    return;
+  }
+  checkApiCallAllowed('GM.listValues', message.uuid);
+
+  return listValues(message.uuid);
+});
+
+
+registerMessageHandler('ApiSetValue', (message, sender, sendResponse) => {
+  if (!message.uuid) {
+    console.warn('ApiSetValue handler got no UUID.');
+    return;
+  } else if (!message.key) {
+    console.warn('ApiSetValue handler got no key.');
+    return;
+  }
+  checkApiCallAllowed('GM.setValue', message.uuid);
+
+  return setValue(message.uuid, message.key, message.value);
+});
+
+///////////////////////////////////////////////////////////////////////////////
 
 const valueStoreName = 'values';
 
-
-function scriptStoreDb(uuid) {
-  function openDb() {
-    const dbVersion = 1;
-    return new Promise((resolve, reject) => {
-      let dbOpen = indexedDB.open('user-script-' + uuid, dbVersion);
-      dbOpen.onerror = event => {
-        console.error('Error opening script store DB!', uuid, event);
-        reject(event);
-      };
-      dbOpen.onsuccess = event => {
-        resolve(event.target.result);
-      };
-      dbOpen.onupgradeneeded = event => {
-        let db = event.target.result;
-        db.onerror = event => {
-          console.error('Error upgrading script store DB!', uuid, event);
-          reject(event);
-        };
-        let store = db.createObjectStore(valueStoreName, {'keypath': 'key'});
-      };
-    });
-  }
-
-  // Android does not support persist. Conditionally set it.
-  if (navigator.storage && navigator.storage.persist) {
-    return navigator.storage.persist().then(openDb);
-  } else {
-    return openDb();
-  }
-}
-
-//////////////////////////// Store Implementation \\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 function deleteStore(uuid) {
   return new Promise((resolve, reject) => {
@@ -125,6 +147,38 @@ async function listValues(uuid) {
 }
 
 
+function scriptStoreDb(uuid) {
+  function openDb() {
+    const dbVersion = 1;
+    return new Promise((resolve, reject) => {
+      let dbOpen = indexedDB.open('user-script-' + uuid, dbVersion);
+      dbOpen.onerror = event => {
+        console.error('Error opening script store DB!', uuid, event);
+        reject(event);
+      };
+      dbOpen.onsuccess = event => {
+        resolve(event.target.result);
+      };
+      dbOpen.onupgradeneeded = event => {
+        let db = event.target.result;
+        db.onerror = event => {
+          console.error('Error upgrading script store DB!', uuid, event);
+          reject(event);
+        };
+        let store = db.createObjectStore(valueStoreName, {'keypath': 'key'});
+      };
+    });
+  }
+
+  // Android does not support persist. Conditionally set it.
+  if (navigator.storage && navigator.storage.persist) {
+    return navigator.storage.persist().then(openDb);
+  } else {
+    return openDb();
+  }
+}
+
+
 async function setValue(uuid, key, value) {
   let scriptDb = await scriptStoreDb(uuid);
   let txn = scriptDb.transaction([valueStoreName], 'readwrite');
@@ -145,7 +199,7 @@ async function setValue(uuid, key, value) {
   });
 }
 
-
+/*
 window.ValueStore = {
   'deleteStore': deleteStore,
   'deleteValue': deleteValue,
@@ -153,67 +207,4 @@ window.ValueStore = {
   'listValues': listValues,
   'setValue': setValue,
 };
-
-////////////////////////////// Message Listeners \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-function onApiDeleteValue(message, sender, sendResponse) {
-  if (!message.uuid) {
-    console.warn('ApiDeleteValue handler got no UUID.');
-    return;
-  } else if (!message.key) {
-    console.warn('ApiDeleteValue handler got no key.');
-    return;
-  }
-  checkApiCallAllowed('GM.deleteValue', message.uuid);
-
-  // Return a promise
-  return deleteValue(message.uuid, message.key);
-};
-window.onApiDeleteValue = onApiDeleteValue;
-
-
-function onApiGetValue(message, sender, sendResponse) {
-  if (!message.uuid) {
-    console.warn('ApiGetValue handler got no UUID.');
-    return;
-  } else if (!message.key) {
-    console.warn('ApiGetValue handler got no key.');
-    return;
-  }
-  checkApiCallAllowed('GM.getValue', message.uuid);
-
-  // Return a promise
-  return getValue(message.uuid, message.key);
-};
-window.onApiGetValue = onApiGetValue;
-
-
-function onApiListValues(message, sender, sendResponse) {
-  if (!message.uuid) {
-    console.warn('ApiListValues handler got no UUID.');
-    return;
-  }
-  checkApiCallAllowed('GM.listValues', message.uuid);
-
-  // Return a promise
-  return listValues(message.uuid);
-};
-window.onApiListValues = onApiListValues;
-
-
-function onApiSetValue(message, sender, sendResponse) {
-  if (!message.uuid) {
-    console.warn('ApiSetValue handler got no UUID.');
-    return;
-  } else if (!message.key) {
-    console.warn('ApiSetValue handler got no key.');
-    return;
-  }
-  checkApiCallAllowed('GM.setValue', message.uuid);
-
-  // Return a promise
-  return setValue(message.uuid, message.key, message.value);
-};
-window.onApiSetValue = onApiSetValue;
-
-})();
+*/

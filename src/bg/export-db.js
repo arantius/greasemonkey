@@ -1,13 +1,14 @@
 'use strict';
 /* Functions for exporting GM database. */
 
-// Private implementation.
-(function() {
+import {_} from '/src/util.js';
+import {scriptsToRunAt} from '/src/bg/user-script-registry.js';
+
 
 function onExportDatabase() {
   let scriptsData = [];
 
-  for (let userScript of UserScriptRegistry.scriptsToRunAt(null, true)) {
+  for (let userScript of scriptsToRunAt(null, true)) {
     scriptsData.push(userScriptData(userScript));
   }
 

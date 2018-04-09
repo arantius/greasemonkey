@@ -6,8 +6,19 @@ content scripts.  It dispatches to global methods registered in other
 and passes all arguments on to that callback.
 */
 
-(function() {
+export function registerMessageHandler(name, handler) {
+  console.log('registering handler', name, handler);
+  if (name in messageHandlers) {
+    throw new Error(`Collision; handler already registered for ${name}!`);
+  }
+  messageHandlers[name] = handler;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+const messageHandlers = {};
 const myPrefix = chrome.runtime.getURL('');
+
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (!message.name) {
@@ -24,14 +35,12 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         + `message from sender "${sender.url}".`);
   }
 
-  var cb = window['on' + message.name];
-  if (!cb) {
+  var handler = messageHandlers[message.name];
+  if (!handler) {
     console.error(
-        'Background has no callback for message:', message, 'sender:', sender);
+        'Background has no handler for message:', message, 'sender:', sender);
     return;
   }
 
-  return cb(message, sender, sendResponse);
+  return handler(message, sender, sendResponse);
 });
-
-})();

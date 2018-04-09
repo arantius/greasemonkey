@@ -6,10 +6,14 @@ content script executions.
 TODO: Make document_start execution time work as intended.
 */
 
-function executeUserscriptOnNavigation(detail) {
+import {getGlobalEnabled} from '/src/bg/is-enabled.js';
+import {scriptsToRunAt} from '/src/bg/user-script-registry.js';
+
+
+export function executeUserscriptOnNavigation(detail) {
   if (false === getGlobalEnabled()) return;
 
-  var userScriptIterator = UserScriptRegistry.scriptsToRunAt(detail.url);
+  var userScriptIterator = scriptsToRunAt(detail.url);
   for (let userScript of userScriptIterator) {
     let options = {
       'code': userScript.evalContent,

@@ -38,7 +38,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-(function() {
+import {GM_convert2RegExp} from '/third-party/convert2RegExp.js';
+
 
 var validProtocols = ['http:', 'https:', 'ftp:', 'file:'];
 var REG_HOST = /^(?:\*\.)?[^*\/]+$|^\*$|^$/;
@@ -47,7 +48,7 @@ var REG_PARTS = new RegExp('^([a-z*]+:|\\*:)//([^/]+)?(/.*)$');
 
 // For the format of "pattern", see:
 //   http://code.google.com/chrome/extensions/match_patterns.html
-function MatchPattern(pattern) {
+export function MatchPattern(pattern) {
   this._pattern = pattern;
 
   // Special case "<all_urls>".
@@ -119,7 +120,3 @@ MatchPattern.prototype.doMatch = function(url) {
   const path = url.pathname + url.search;
   return this._hostExpr.test(url.hostname) && this._pathExpr.test(path);
 };
-
-
-window.MatchPattern = MatchPattern;
-})();

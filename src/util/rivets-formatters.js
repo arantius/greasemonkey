@@ -1,6 +1,7 @@
 'use strict';
 
-import {_} from '/src/i18n.js';
+import {_} from '/src/util.js';
+
 
 rivets.formatters.i18n = _;
 rivets.formatters.i18nBool = (cond, t, f) => _(cond ? t : f);

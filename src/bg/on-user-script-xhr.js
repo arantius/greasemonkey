@@ -4,15 +4,13 @@ This file is responsible for providing the GM.xmlHttpRequest API method.  It
 listens for a connection on a Port, and
 */
 
-// Private implementation.
-(function() {
 
 const gExtensionUrl = chrome.extension.getURL('');
 const gHeadersToReplace = ['cookie', 'origin', 'referer'];
 const gDummyHeaderPrefix = 'x-greasemonkey-';
 
 
-function onUserScriptXhr(port) {
+function onConnectUserScriptXhr(port) {
   if (port.name != 'UserScriptXhr') return;
 
   let xhr = new XMLHttpRequest();
@@ -27,7 +25,7 @@ function onUserScriptXhr(port) {
     }
   });
 }
-chrome.runtime.onConnect.addListener(onUserScriptXhr);
+chrome.runtime.onConnect.addListener(onConnectUserScriptXhr);
 
 
 function open(xhr, d, port, tabUrl) {
@@ -193,5 +191,3 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     rewriteHeaders,
     {'urls': ['<all_urls>'], 'types': ['xmlhttprequest']},
     ['blocking', 'requestHeaders']);
-
-})();

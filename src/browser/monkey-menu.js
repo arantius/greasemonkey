@@ -1,10 +1,9 @@
 'use strict';
 
-import {_} from '/src/i18n.js';
+import {_} from '/src/util.js';
 
-export default init;
 
-function init() {
+export function init() {
   window.addEventListener('DOMContentLoaded', onLoad, false);
   window.addEventListener('contextmenu', onContextMenu, false);
   window.addEventListener('click', onClick, false);

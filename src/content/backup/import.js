@@ -1,6 +1,7 @@
 'use strict';
 
-import {_} from '/src/i18n.js';
+import {_} from '/src/util.js';
+
 
 async function dbImport(type, bufferPromise) {
   let databaseObject = await loadZipFile(await bufferPromise);

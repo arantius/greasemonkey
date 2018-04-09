@@ -1,6 +1,7 @@
 'use strict';
 
-import {_} from '/src/i18n.js';
+import {_} from '/src/util.js';
+
 
 let gUserScript = null;
 

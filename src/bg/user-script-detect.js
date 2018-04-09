@@ -1,8 +1,6 @@
 'use strict';
 /* Detect user scripts, possibly open the installation dialog. */
 
-(function() {
-
 const gContentTypeRe = (() => {
   const userScriptTypes = [
       'text/plain',
@@ -16,7 +14,7 @@ const gContentTypeRe = (() => {
 })();
 
 
-function onHeadersReceivedDetectUserScript(requestDetails) {
+export function onHeadersReceivedDetectUserScript(requestDetails) {
   if (!getGlobalEnabled()) return {};
   if (requestDetails.method != 'GET') return {};
   if (!responseHasUserScriptType(requestDetails.responseHeaders)) return {};
@@ -26,7 +24,6 @@ function onHeadersReceivedDetectUserScript(requestDetails) {
   // https://stackoverflow.com/a/18684302
   return {'redirectUrl': 'javascript:'};
 }
-window.onHeadersReceivedDetectUserScript = onHeadersReceivedDetectUserScript;
 
 
 function responseHasUserScriptType(responseHeaders) {
@@ -63,5 +60,3 @@ function openInstallDialog(url) {
    }
   });
 }
-
-})();

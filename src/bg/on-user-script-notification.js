@@ -3,25 +3,10 @@
 This file is responsible for providing the GM.notification API method.
 */
 
-// Private implementation
-(function () {
-
 let portMap = new Map();
 
 
-function createNotification(details, port) {
-  chrome.notifications.create({
-    type: 'basic',
-    title: details.title,
-    iconUrl: details.image,
-    message: details.text,
-  }, id => {
-    portMap.set(id, port);
-  });
-}
-
-
-function onUserScriptNotification(port) {
+function onConnectUserScriptNotification(port) {
   if (port.name != 'UserScriptNotification') return;
 
   port.onMessage.addListener(msg => {
@@ -36,7 +21,7 @@ function onUserScriptNotification(port) {
     }
   });
 }
-chrome.runtime.onConnect.addListener(onUserScriptNotification);
+chrome.runtime.onConnect.addListener(onConnectUserScriptNotification);
 
 
 chrome.notifications.onClicked.addListener(id => {
@@ -55,4 +40,16 @@ chrome.notifications.onClosed.addListener(id => {
   port.disconnect();
 });
 
-})();
+///////////////////////////////////////////////////////////////////////////////
+
+function createNotification(details, port) {
+  chrome.notifications.create({
+    type: 'basic',
+    title: details.title,
+    iconUrl: details.image,
+    message: details.text,
+  }, id => {
+    portMap.set(id, port);
+  });
+}
+

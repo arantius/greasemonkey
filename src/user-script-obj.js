@@ -7,14 +7,16 @@ the install process.  Nothing else besides `UserScriptRegistry` should ever
 reference any other objects from this file.
 */
 
+import {_} from '/src/util.js';
+import {GM_convert2RegExp} from '/third-party/convert2RegExp.js';
+import {MatchPattern} from '/third-party/MatchPattern.js';
+
+
 // Increment this number when updating `calculateEvalContent()`.  If it
 // is higher than it was when eval content was last calculated, it will
 // be re-calculated.
-const EVAL_CONTENT_VERSION = 12;
+export const EVAL_CONTENT_VERSION = 12;
 
-
-// Private implementation.
-(function() {
 
 const extensionVersion = chrome.runtime.getManifest().version;
 const aboutBlankRegexp = /^about:blank/;
@@ -101,7 +103,7 @@ const userScriptKeys = [
     'description', 'downloadUrl', 'excludes', 'grants', 'homePageUrl',
     'includes', 'matches', 'name', 'namespace', 'noFrames', 'runAt', 'version'];
 /// Base class, fields and methods common to all kinds of UserScript objects.
-window.RemoteUserScript = class RemoteUserScript {
+export class RemoteUserScript {
   constructor(vals) {
     // Fixed details parsed from the ==UserScript== section.
     this._description = null;
@@ -187,9 +189,8 @@ const runnableUserScriptKeys = [
     'enabled', 'evalContent', 'evalContentVersion', 'iconBlob', 'resources',
     'userExcludes', 'userIncludes', 'userMatches', 'uuid'];
 /// A _UserScript, plus user settings, plus (eval'able) contents.  Should
-/// never be called except by `UserScriptRegistry.`
-window.RunnableUserScript = class RunnableUserScript
-    extends window.RemoteUserScript {
+/// never be called except by `UserScriptRegistry`.
+export class RunnableUserScript extends RemoteUserScript {
   constructor(details) {
     super(details);
 
@@ -235,9 +236,8 @@ window.RunnableUserScript = class RunnableUserScript
 const editableUserScriptKeys = [
     'parsedDetails', 'content', 'requiresContent'];
 /// A _UserScript, plus user settings, plus all requires' contents.  Should
-/// never be called except by `UserScriptRegistry.`
-window.EditableUserScript = class EditableUserScript
-    extends window.RunnableUserScript {
+/// never be called except by `UserScriptRegistry`.
+export class EditableUserScript extends RunnableUserScript {
   constructor(details) {
     super(details);
 
@@ -340,5 +340,3 @@ window.EditableUserScript = class EditableUserScript
     Object.assign(this._resources, downloaderDetails.resources);
   }
 }
-
-})();

@@ -4,8 +4,8 @@ This file is responsible for tracking and exposing the global "enabled" state
 of Greasemonkey.
 */
 
-// Private implementation.
-(function() {
+import {registerMessageHandler} from '/src/bg/on-message.js';
+
 
 let isEnabled = true;
 chrome.storage.local.get('globalEnabled', v => {
@@ -14,20 +14,14 @@ chrome.storage.local.get('globalEnabled', v => {
   setIcon();
 });
 
+///////////////////////////////////////////////////////////////////////////////
 
-function getGlobalEnabled() {
+export function getGlobalEnabled() {
   return !!isEnabled;
 }
-window.getGlobalEnabled = getGlobalEnabled;
 
 
-function onEnabledQuery(message, sender, sendResponse) {
-  sendResponse(isEnabled);
-}
-window.onEnabledQuery = onEnabledQuery;
-
-
-function setGlobalEnabled(enabled) {
+export function setGlobalEnabled(enabled) {
   isEnabled = !!enabled;
   chrome.runtime.sendMessage({
     'name': 'EnabledChanged',
@@ -36,12 +30,32 @@ function setGlobalEnabled(enabled) {
   setIcon();
   chrome.storage.local.set({'globalEnabled': enabled});
 }
-window.setGlobalEnabled = setGlobalEnabled;
-function onEnabledSet(message, sender, sendResponse) {
-  setGlobalEnabled(message.enabled);
-}
-window.onEnabledSet = onEnabledSet;
 
+
+export function toggleGlobalEnabled() {
+  setGlobalEnabled(!isEnabled);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+registerMessageHandler('EnabledQuery', (message, sender, sendResponse) => {
+  sendResponse(isEnabled);
+});
+
+
+registerMessageHandler('EnabledSet', (message, sender, sendResponse) => {
+  setGlobalEnabled(message.enabled);
+});
+
+
+registerMessageHandler('EnabledToggle', (message, sender, sendResponse) => {
+  try {
+    toggleGlobalEnabled();
+    sendResponse(isEnabled);
+  } catch (e) { console.error(e); }
+});
+
+///////////////////////////////////////////////////////////////////////////////
 
 function setIcon() {
   // Firefox for Android does not have setIcon
@@ -66,20 +80,3 @@ function setIcon() {
     img.src = iconPath;
   }
 }
-
-
-function toggleGlobalEnabled() {
-  setGlobalEnabled(!isEnabled);
-}
-window.toggleGlobalEnabled = toggleGlobalEnabled;
-
-
-function onEnabledToggle(message, sender, sendResponse) {
-  try {
-    toggleGlobalEnabled();
-    sendResponse(isEnabled);
-  } catch (e) { console.error(e); }
-}
-window.onEnabledToggle = onEnabledToggle;
-
-})();
