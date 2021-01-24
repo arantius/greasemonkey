@@ -104,7 +104,7 @@ section h2 a {
 }
 
 
-section menuitem.go-back {
+section gm-menuitem.go-back {
   box-sizing: content-box;
   color: inherit;
   display: inline-block;
@@ -114,20 +114,20 @@ section menuitem.go-back {
   vertical-align: -10px;  /* Relative to text, after padding. */
   width: 16px;
 }
-section menuitem.go-back:hover {
+section gm-menuitem.go-back:hover {
   background-color: var(--focus-color);
 }
-section menuitem.go-back::before {
+section gm-menuitem.go-back::before {
   content: url(/skin/back.svg);
 }
 
 /********************************** MENUS ************************************/
 
-menu {
+gm-menu {
   margin: 0;
   padding: 0;
 }
-menuitem {
+gm-menuitem {
   display: block;
   overflow-x: hidden;
   padding: 4px 12px 4px 10px;
@@ -135,14 +135,14 @@ menuitem {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-menuitem:focus {
+gm-menuitem:focus {
   background-color: var(--focus-color);
   outline: none;
 }
-menuitem[disabled] {
+gm-menuitem[disabled] {
   opacity: 0.65;
 }
-menuitem .arrow {
+gm-menuitem .arrow {
   background: url(/skin/next.svg) center center no-repeat;
   display: inline-block;
   height: 100%;
@@ -154,24 +154,24 @@ menuitem .arrow {
   width: 12px;
 }
 
-p menuitem {
+p gm-menuitem {
   padding-left: 0;
   padding-right: 0;
 }
 
-menuitem .icon {
+gm-menuitem .icon {
   font-size: 14px;
   margin-right: 3px;
   text-align: center;
   width: 16px;
 }
-menuitem .icon img {
+gm-menuitem .icon img {
   object-fit: contain;
   max-height: 16px;
   width: 16px;
 }
 
-menuitem.user-script {
+gm-menuitem.user-script {
   padding-right: 24px;
 }
 

@@ -165,7 +165,7 @@ function onMouseOut() {
 
 function onMouseOver(event) {
   let el = event.target;
-  while (el && el.tagName != 'MENUITEM') el = el.parentNode;
+  while (el && el.tagName != 'GM-MENUITEM') el = el.parentNode;
   if (el && el.hasAttribute('tabindex')) el.focus();
 }
 
@@ -201,7 +201,7 @@ function activate(el) {
     return;
   }
 
-  while (el && el.tagName != 'MENUITEM') el = el.parentNode;
+  while (el && el.tagName != 'GM-MENUITEM') el = el.parentNode;
   if (!el) return;
 
   switch (el.className) {
