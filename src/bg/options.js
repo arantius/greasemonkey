@@ -69,7 +69,7 @@ function setIcon() {
   if (!chrome.browserAction.setIcon) {
     return;
   }
-  let iconPath = chrome.extension.getURL('skin/icon.svg');
+  let iconPath = chrome.runtime.getURL('skin/icon.svg');
   if (gIsEnabled) {
     chrome.browserAction.setIcon({'path': iconPath});
   } else {

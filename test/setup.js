@@ -3,7 +3,7 @@
 chrome.runtime.getManifest.returns({'version': 1});
 
 // Reference the served e.g. icon URL correctly.
-chrome.extension.getURL.callsFake(suffix => '/base/' + suffix);
+chrome.runtime.getURL.callsFake(suffix => '/base/' + suffix);
 
 // See comment for details
 // https://github.com/greasemonkey/greasemonkey/pull/2812#issuecomment-358776737
