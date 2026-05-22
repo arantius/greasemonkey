@@ -1,3 +1,8 @@
+:root {
+  --focus-color: rgba(0, 0, 0, 0.15);
+}
+
+
 html, body {
   background: lightgrey;
   height: 100%;
@@ -82,6 +87,39 @@ body #modal-splash {
 }
 .command-item:hover {
   background: #e5e5e5;
+}
+
+.tab-bar #space {
+  flex-grow: 1;
+}
+.tab-bar #options {
+  margin: 0 0 0 1ex;
+  position:relative;
+}
+
+#options menu {
+  background: whitesmoke;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 0;
+  padding: 1ex;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 20em;
+  z-index: 1;
+}
+#options menu menuitem {
+  display: block;
+}
+#options menu menuitem:hover {
+  background-color: var(--focus-color);
+}
+menuitem .icon {
+  font-size: 14px;
+  margin-right: 3px;
+  text-align: center;
+  width: 16px;
 }
 
 body, #editor, #editor textarea {

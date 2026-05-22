@@ -289,6 +289,9 @@
   "editor": {
     "message": "Editor"
   },
+  "editor_options": {
+    "message": "Editor Options"
+  },
   "use_enhanced_editor": {
     "message": "Use enhanced editor"
   },

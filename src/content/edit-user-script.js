@@ -101,8 +101,13 @@ const gTplData = {
   'modal': {
     'closeDisabled': true,
     'errorList': [],
-    'title': _('saving')
-  }
+    'title': _('saving'),
+  },
+  'editorOptions': {
+    'showLineNumbers': true,
+    'matchBrackets': true,
+  },
+  'optionsMenuVisible': false,
 };
 // Change the title of the save icon (and more) to initial values.
 tinybind.bind(document, gTplData);
@@ -144,9 +149,12 @@ function nameForUrl(url) {
 let editor;
 let createDoc;
 (async function() {
-  let options = await browser.runtime.sendMessage({'name': 'OptionsLoad'});
+  let {editorOptions} = await browser.storage.local.get('editorOptions');
+  gTplData.editorOptions = Object.assign(gTplData.editorOptions, editorOptions);
+
+  let gmOptions = await browser.runtime.sendMessage({'name': 'OptionsLoad'});
   const editorElem = document.getElementById('editor');
-  if (options.useCodeMirror) {
+  if (gmOptions.useCodeMirror) {
     const macKeymap = CodeMirror.normalizeKeyMap({
       'Cmd-/': 'toggleComment',
     });
@@ -158,18 +166,19 @@ let createDoc;
 
     editor = CodeMirror(
         editorElem,
-        // TODO: Make appropriate options user-configurable.
         {
-          'tabSize': 2,
-          'lineNumbers': true,
           'extraKeys': isMacKeymap ? macKeymap : pcKeymap,
+          'lineNumbers': gTplData.editorOptions.showLineNumbers,
+          'matchBrackets': gTplData.editorOptions.matchBrackets,
+          'tabSize': 2,
         });
 
     CodeMirror.commands.save = onSave;
     createDoc = (...args) => CodeMirror.Doc(...args);
   } else {
-    editor =new SimpleEditor(editorElem);
+    editor = new SimpleEditor(editorElem);
     createDoc = (...args) => new SimpleEditorDoc(...args);
+    // TODO: Hide editor options menu; it does not apply to simple editor.
   }
 
   editor.on('change', () => {
@@ -235,6 +244,53 @@ let createDoc;
 
   gTplData.name = i18nUserScript('name', gUserScript);
 })();
+
+///////////////////////////////////////////////////////////////////////////////
+
+document.addEventListener('click', event => {
+  const clickedInOptions
+      = document.getElementById('options').contains(event.target);
+  const clickedInOptionsMenu
+      = document.querySelector('#options menu').contains(event.target);
+  if (gTplData.optionsMenuVisible && !clickedInOptionsMenu) {
+    gTplData.optionsMenuVisible = false;
+  } else if (!gTplData.optionsMenuVisible && clickedInOptions) {
+    gTplData.optionsMenuVisible = true;
+  }
+});
+
+document.getElementById('options').addEventListener('click', event => {
+  let el = event.target;
+  while (el && el.tagName != 'MENUITEM') el = el.parentNode;
+  if (!el) return;
+
+  let needsSave = false;
+  switch (el.id) {
+    case 'toggle-line-numbers':
+      gTplData.editorOptions.showLineNumbers = !gTplData.editorOptions.showLineNumbers;
+      if (editor.setOption) {
+        editor.setOption('lineNumbers', gTplData.editorOptions.showLineNumbers);
+      }
+      needsSave = true;
+      break;
+    case 'toggle-match-brackets':
+      gTplData.editorOptions.matchBrackets = !gTplData.editorOptions.matchBrackets;
+      if (editor.setOption) {
+        editor.setOption('matchBrackets', gTplData.editorOptions.matchBrackets);
+      }
+      needsSave = true;
+      break;
+  }
+
+  if (needsSave) {
+    // Marshall template bound values down to primitives.
+    let save = {'editorOptions': {
+      'showLineNumbers': !!gTplData.editorOptions.showLineNumbers,
+      'matchBrackets': !!gTplData.editorOptions.matchBrackets,
+    }};
+    browser.storage.local.set(save);
+  }
+});
 
 ///////////////////////////////////////////////////////////////////////////////
 

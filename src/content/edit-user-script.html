@@ -23,6 +23,8 @@
 
 <script src="/third-party/codemirror/addon/comment/comment.js"></script>
 
+<script src="/third-party/codemirror/addon/edit/matchbrackets.js"></script>
+
 <script src="/third-party/codemirror/addon/scroll/annotatescrollbar.js"></script>
 
 <script src="/third-party/codemirror/addon/search/searchcursor.js"></script>
@@ -79,6 +81,22 @@
     <i class="icon fa fa-floppy-o" aria-hidden="true"></i>
   </div>
   <ul id="tabs"></ul>
+
+  <div id="space"></div>
+
+  <div id="options" class="command-item" rv-title="'editor_options'|i18n" role="button">
+    <i class="icon fa fa-cogs" aria-hidden="true"></i>
+    <menu title="" rv-show="optionsMenuVisible">
+      <menuitem id="toggle-line-numbers">
+        <i class="icon fa" rv-class-fa-check="editorOptions.showLineNumbers"></i>
+        Show line numbers
+      </menuitem>
+      <menuitem id="toggle-match-brackets">
+        <i class="icon fa" rv-class-fa-check="editorOptions.matchBrackets"></i>
+        Highlight matching brackets
+      </menuitem>
+    </menu>
+  </div>
 </div>
 <div id="editor"></div>
 
