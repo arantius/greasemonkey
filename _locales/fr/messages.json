@@ -15,6 +15,9 @@
   "auto_update_enabled": {
     "message": "Mise à jour automatique activée"
   },
+  "back": {
+    "message": "Retour"
+  },
   "backup_export": {
     "message": "Exporter une sauvegarde..."
   },
@@ -72,6 +75,12 @@
   "edit": {
     "message": "Modifier"
   },
+  "editor": {
+    "message": "Éditeur"
+  },
+  "editor_options": {
+    "message": "Options de l'éditeur"
+  },
   "enabled": {
     "message": "Activé"
   },
@@ -101,6 +110,12 @@
   },
   "gm_opentab_bad_URL": {
     "message": "GM.openInTab : Impossible de comprendre l'URL : $1"
+  },
+  "gm_rmc_bad_access_key": {
+    "message": "GM.registerMenuCommand : \"accessKey\" doit être un caractère unique"
+  },
+  "gm_rmc_bad_command_func": {
+    "message": "GM.registerMenuCommand : \"commandFunc\" doit être une fonction"
   },
   "gm_script_id": {
     "message": "[Script Greasemonkey $1]"
@@ -135,6 +150,9 @@
   },
   "greasemonkey_wiki": {
     "message": "Wiki Greasemonkey"
+  },
+  "help": {
+    "message": "Aide"
   },
   "homepage": {
     "message": "Page d'accueil"
@@ -217,6 +235,15 @@
   "unnamed_script_RAND": {
     "message": "Anonyme Script $1"
   },
+  "update_disabled_bad_version": {
+    "message": "Impossible de mettre à jour avec un format @version invalide."
+  },
+  "update_disabled_no_version": {
+    "message": "Impossible de mettre à jour sans @version."
+  },
+  "update_disabled_url": {
+    "message": "Impossible de mettre à jour sans URL de téléchargement connue."
+  },
   "update_now": {
     "message": "Mettre à jour maintenant"
   },
@@ -229,14 +256,26 @@
   "update_result_updated": {
     "message": "Mise à jour effectuée."
   },
-  "user_includes": {
-    "message": "Utilisateur @include"
+  "use_enhanced_editor": {
+    "message": "Utiliser l'éditeur amélioré"
+  },
+  "use_enhanced_editor_explain": {
+    "message": "Les utilisateurs de lecteurs d'écran doivent désactiver cette option, car l'éditeur de code amélioré n'est pas accessible."
   },
   "user_excludes": {
     "message": "Utilisateur @exclude"
   },
+  "user_includes": {
+    "message": "Utilisateur @include"
+  },
   "user_matches": {
     "message": "Utilisateur @match"
+  },
+  "user_script_commands": {
+    "message": "Commandes de scripts utilisateur"
+  },
+  "user_script_commands_button": {
+    "message": "Commandes de scripts utilisateur..."
   },
   "user_script_options": {
     "message": "Options de script utilisateur"

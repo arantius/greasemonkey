@@ -15,6 +15,9 @@
   "auto_update_enabled": {
     "message": "Automatisch bijwerken ingeschakeld"
   },
+  "back": {
+    "message": "Terug"
+  },
   "backup_export": {
     "message": "Een back-up exporteren..."
   },
@@ -71,6 +74,12 @@
   },
   "edit": {
     "message": "Bewerken"
+  },
+  "editor": {
+    "message": "Editor"
+  },
+  "editor_options": {
+    "message": "Editoropties"
   },
   "enabled": {
     "message": "Ingeschakeld"
@@ -141,6 +150,9 @@
   },
   "greasemonkey_wiki": {
     "message": "Greasemonkey-wiki"
+  },
+  "help": {
+    "message": "Help"
   },
   "homepage": {
     "message": "Startpagina"
@@ -223,6 +235,15 @@
   "unnamed_script_RAND": {
     "message": "Naamloos script $1"
   },
+  "update_disabled_bad_version": {
+    "message": "Kan niet bijwerken met ongeldig @version-formaat."
+  },
+  "update_disabled_no_version": {
+    "message": "Kan niet bijwerken zonder @version."
+  },
+  "update_disabled_url": {
+    "message": "Kan niet bijwerken zonder bekende download-URL."
+  },
   "update_now": {
     "message": "Nu bijwerken"
   },
@@ -235,11 +256,17 @@
   "update_result_updated": {
     "message": "Met succes bijgewerkt."
   },
-  "user_includes": {
-    "message": "Opgenomen door gebruiker"
+  "use_enhanced_editor": {
+    "message": "Verbeterde editor gebruiken"
+  },
+  "use_enhanced_editor_explain": {
+    "message": "Schermlezergebruikers moeten dit uitschakelen, omdat de verbeterde code-editor niet toegankelijk is."
   },
   "user_excludes": {
     "message": "Uitgesloten door gebruiker"
+  },
+  "user_includes": {
+    "message": "Opgenomen door gebruiker"
   },
   "user_matches": {
     "message": "Overeenkomsten door gebruiker"
@@ -270,20 +297,5 @@
   },
   "xhr_no_url": {
     "message": "GM.xmlHttpRequest: geen URL ontvangen."
-  },
-  "back": {
-    "message": "Terug"
-  },
-  "help": {
-    "message": "Help"
-  },
-  "editor": {
-    "message": "Editor"
-  },
-  "use_enhanced_editor": {
-    "message": "Verbeterde editor gebruiken"
-  },
-  "use_enhanced_editor_explain": {
-    "message": "Schermlezergebruikers moeten dit uitschakelen, omdat de verbeterde code-editor niet toegankelijk is."
   }
 }

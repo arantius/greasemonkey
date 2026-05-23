@@ -15,6 +15,9 @@
   "auto_update_enabled": {
     "message": "Aggiornamento automatico attivato"
   },
+  "back": {
+    "message": "Indietro"
+  },
   "backup_export": {
     "message": "Esportare una copia di backup..."
   },
@@ -72,6 +75,12 @@
   "edit": {
     "message": "Modifica"
   },
+  "editor": {
+    "message": "Editor"
+  },
+  "editor_options": {
+    "message": "Opzioni editor"
+  },
   "enabled": {
     "message": "Attivato"
   },
@@ -101,6 +110,12 @@
   },
   "gm_opentab_bad_URL": {
     "message": "GM.openInTab: Impossibile leggere l’indirizzo: $1"
+  },
+  "gm_rmc_bad_access_key": {
+    "message": "GM.registerMenuCommand: \"accessKey\" deve essere un singolo carattere"
+  },
+  "gm_rmc_bad_command_func": {
+    "message": "GM.registerMenuCommand: \"commandFunc\" deve essere una funzione"
   },
   "gm_script_id": {
     "message": "[Script Greasemonkey $1]"
@@ -135,6 +150,9 @@
   },
   "greasemonkey_wiki": {
     "message": "Wiki di Greasemonkey"
+  },
+  "help": {
+    "message": "Aiuto"
   },
   "homepage": {
     "message": "Pagina iniziale"
@@ -217,6 +235,15 @@
   "unnamed_script_RAND": {
     "message": "Script senza nome $1"
   },
+  "update_disabled_bad_version": {
+    "message": "Impossibile aggiornare con un formato @version non valido."
+  },
+  "update_disabled_no_version": {
+    "message": "Impossibile aggiornare senza @version."
+  },
+  "update_disabled_url": {
+    "message": "Impossibile aggiornare senza un URL di download noto."
+  },
   "update_now": {
     "message": "Aggiorna ora"
   },
@@ -229,14 +256,26 @@
   "update_result_updated": {
     "message": "Aggiornato con successo."
   },
-  "user_includes": {
-    "message": "Inclusioni utente"
+  "use_enhanced_editor": {
+    "message": "Usa editor migliorato"
+  },
+  "use_enhanced_editor_explain": {
+    "message": "Gli utenti di screen reader dovrebbero disabilitare questa opzione, poiché l'editor di codice migliorato non è accessibile."
   },
   "user_excludes": {
     "message": "Esclusioni utente"
   },
+  "user_includes": {
+    "message": "Inclusioni utente"
+  },
   "user_matches": {
     "message": "Corrispondenze utente"
+  },
+  "user_script_commands": {
+    "message": "Comandi script utente"
+  },
+  "user_script_commands_button": {
+    "message": "Comandi script utente..."
   },
   "user_script_options": {
     "message": "Opzioni script utente"

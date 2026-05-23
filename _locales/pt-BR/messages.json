@@ -9,6 +9,15 @@
   "SCRIPT_does_not_grant_METHOD": {
     "message": "$1 não @grant o método $2"
   },
+  "auto_update_disabled": {
+    "message": "Atualização automática desativada"
+  },
+  "auto_update_enabled": {
+    "message": "Atualização automática ativada"
+  },
+  "back": {
+    "message": "Voltar"
+  },
   "backup_export": {
     "message": "Exportar um backup..."
   },
@@ -36,6 +45,12 @@
   "cancel": {
     "message": "Cancelar"
   },
+  "close": {
+    "message": "Fechar"
+  },
+  "confirm_update_edited": {
+    "message": "Você editou este script, realmente deseja atualizá-lo?"
+  },
   "description": {
     "message": "Descrição:"
   },
@@ -60,20 +75,47 @@
   "edit": {
     "message": "Editar"
   },
+  "editor": {
+    "message": "Editor"
+  },
+  "editor_options": {
+    "message": "Opções do editor"
+  },
   "enabled": {
     "message": "Ativado"
+  },
+  "exclude": {
+    "message": "Excluir"
   },
   "extDesc": {
     "message": "Um gerenciador de scripts de usuário para o Firefox."
   },
+  "extName": {
+    "message": "Greasemonkey"
+  },
+  "fix_and_save": {
+    "message": "O conteúdo do editor não foi salvo. Corrija este erro e tente novamente."
+  },
   "get_user_scripts": {
     "message": "Obter scripts de usuário"
+  },
+  "global_excludes": {
+    "message": "Exclusões Globais"
+  },
+  "global_excludes_explain": {
+    "message": "Um padrão @exclude por linha. Nenhum script de usuário será executado aqui."
   },
   "gm_notif_text_must_be_string": {
     "message": "GM.notification: \"texto\" deve ser uma string"
   },
   "gm_opentab_bad_URL": {
     "message": "GM.openInTab: Não foi possível entender o URL: $1"
+  },
+  "gm_rmc_bad_access_key": {
+    "message": "GM.registerMenuCommand: \"accessKey\" deve ser um único caractere"
+  },
+  "gm_rmc_bad_command_func": {
+    "message": "GM.registerMenuCommand: \"commandFunc\" deve ser uma função"
   },
   "gm_script_id": {
     "message": "[Script Greasemonkey $1]"
@@ -100,8 +142,17 @@
   "greasemonkey_is_disabled": {
     "message": "Greasemonkey está desativado"
   },
+  "greasemonkey_options": {
+    "message": "Opções do Greasemonkey"
+  },
+  "greasemonkey_user_script_editor": {
+    "message": "Editor de Scripts de Usuário do Greasemonkey"
+  },
   "greasemonkey_wiki": {
     "message": "Wiki Greasemonkey"
+  },
+  "help": {
+    "message": "Ajuda"
   },
   "homepage": {
     "message": "Página inicial"
@@ -124,6 +175,9 @@
   "install_failed": {
     "message": "Falha ao instalar o script do usuário"
   },
+  "last_updated": {
+    "message": "Última atualização:"
+  },
   "malicious_user_scripts": {
     "message": "Os scripts de usuários mal-intencionados podem violar sua privacidade, roubar seus dados e agir em seu nome sem o seu conhecimento."
   },
@@ -133,8 +187,14 @@
   "new_user_script": {
     "message": "Novo script de usuário..."
   },
+  "only_use_these": {
+    "message": "Use apenas estes"
+  },
   "open_editor_after": {
     "message": "Abrir o editor após completar a instalação"
+  },
+  "options": {
+    "message": "Opções:"
   },
   "other_user_scripts": {
     "message": "Outros scripts de usuário"
@@ -154,6 +214,9 @@
   "save_failed_unknown": {
     "message": "Falha ao salvar o script do usuário: erro desconhecido."
   },
+  "saving": {
+    "message": "Salvando"
+  },
   "script_save_error": {
     "message": "Erro ao salvar script"
   },
@@ -171,6 +234,51 @@
   },
   "unnamed_script_RAND": {
     "message": "Script sem nome $1"
+  },
+  "update_disabled_bad_version": {
+    "message": "Não é possível atualizar com um formato @version inválido."
+  },
+  "update_disabled_no_version": {
+    "message": "Não é possível atualizar sem @version."
+  },
+  "update_disabled_url": {
+    "message": "Não é possível atualizar sem uma URL de download conhecida."
+  },
+  "update_now": {
+    "message": "Atualizar agora"
+  },
+  "update_result_error": {
+    "message": "Erro ao verificar atualizações."
+  },
+  "update_result_noupdate": {
+    "message": "Nenhuma versão mais recente disponível."
+  },
+  "update_result_updated": {
+    "message": "Atualizado com sucesso."
+  },
+  "use_enhanced_editor": {
+    "message": "Usar editor aprimorado"
+  },
+  "use_enhanced_editor_explain": {
+    "message": "Usuários de leitores de tela devem desativar isso, pois o editor de código aprimorado não é acessível."
+  },
+  "user_excludes": {
+    "message": "Exclusões de usuário"
+  },
+  "user_includes": {
+    "message": "Inclusões de usuário"
+  },
+  "user_matches": {
+    "message": "Correspondências de usuário"
+  },
+  "user_script_commands": {
+    "message": "Comandos de script de usuário"
+  },
+  "user_script_commands_button": {
+    "message": "Comandos de script de usuário..."
+  },
+  "user_script_options": {
+    "message": "Opções de script de usuário"
   },
   "user_scripts_for_this_tab": {
     "message": "Scripts de usuário para esta aba"

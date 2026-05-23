@@ -15,6 +15,9 @@
   "auto_update_enabled": {
     "message": "自動更新已啟用"
   },
+  "back": {
+    "message": "返回"
+  },
   "backup_export": {
     "message": "匯出備份…"
   },
@@ -71,6 +74,12 @@
   },
   "edit": {
     "message": "編輯"
+  },
+  "editor": {
+    "message": "編輯器"
+  },
+  "editor_options": {
+    "message": "編輯器選項"
   },
   "enabled": {
     "message": "已啟用"
@@ -141,6 +150,9 @@
   },
   "greasemonkey_wiki": {
     "message": "Greasemonkey Wiki"
+  },
+  "help": {
+    "message": "說明"
   },
   "homepage": {
     "message": "首頁"
@@ -223,14 +235,14 @@
   "unnamed_script_RAND": {
     "message": "未命名的指令稿 $1"
   },
-  "update_disabled_url": {
-    "message": "由於沒有已知的下載網址，無法進行更新。"
+  "update_disabled_bad_version": {
+    "message": "無法更新，因為 @version 格式不正確。"
   },
   "update_disabled_no_version": {
     "message": "若未指定 @version，則無法進行更新。"
   },
-  "update_disabled_bad_version": {
-    "message": "無法更新，因為 @version 格式不正確。"
+  "update_disabled_url": {
+    "message": "由於沒有已知的下載網址，無法進行更新。"
   },
   "update_now": {
     "message": "立刻更新"
@@ -244,11 +256,17 @@
   "update_result_updated": {
     "message": "成功更新。"
   },
-  "user_includes": {
-    "message": "使用者包含"
+  "use_enhanced_editor": {
+    "message": "使用進階編輯器"
+  },
+  "use_enhanced_editor_explain": {
+    "message": "螢幕閱讀器使用者應停用此功能，進階程式碼編輯器不是無障礙的。"
   },
   "user_excludes": {
     "message": "使用者排除"
+  },
+  "user_includes": {
+    "message": "使用者包含"
   },
   "user_matches": {
     "message": "使用者符合"
@@ -279,20 +297,5 @@
   },
   "xhr_no_url": {
     "message": "GM.xmlHttpRequest：收不到 URL。"
-  },
-  "back": {
-    "message": "返回"
-  },
-  "help": {
-    "message": "說明"
-  },
-  "editor": {
-    "message": "編輯器"
-  },
-  "use_enhanced_editor": {
-    "message": "使用進階編輯器"
-  },
-  "use_enhanced_editor_explain": {
-    "message": "螢幕閱讀器使用者應停用此功能，進階程式碼編輯器不是無障礙的。"
   }
 }

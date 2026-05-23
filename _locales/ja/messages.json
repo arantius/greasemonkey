@@ -15,6 +15,9 @@
   "auto_update_enabled": {
     "message": "自動更新は有効"
   },
+  "back": {
+    "message": "戻る"
+  },
   "backup_export": {
     "message": "バックアップのエクスポート..."
   },
@@ -71,6 +74,12 @@
   },
   "edit": {
     "message": "編集"
+  },
+  "editor": {
+    "message": "エディター"
+  },
+  "editor_options": {
+    "message": "エディターオプション"
   },
   "enabled": {
     "message": "有効"
@@ -141,6 +150,9 @@
   },
   "greasemonkey_wiki": {
     "message": "Greasemonkey ウィキ"
+  },
+  "help": {
+    "message": "ヘルプ"
   },
   "homepage": {
     "message": "ホームページ"
@@ -223,6 +235,15 @@
   "unnamed_script_RAND": {
     "message": "新しいスクリプト $1"
   },
+  "update_disabled_bad_version": {
+    "message": "無効な @version 形式のため更新できません。"
+  },
+  "update_disabled_no_version": {
+    "message": "@version がないため更新できません。"
+  },
+  "update_disabled_url": {
+    "message": "ダウンロード URL が不明なため更新できません。"
+  },
   "update_now": {
     "message": "今すぐ更新"
   },
@@ -235,11 +256,17 @@
   "update_result_updated": {
     "message": "更新成功."
   },
-  "user_includes": {
-    "message": "ユーザー @include"
+  "use_enhanced_editor": {
+    "message": "改良版のエディタを使用"
+  },
+  "use_enhanced_editor_explain": {
+    "message": "スクリーンリーダーを利用している場合、改良版エディターを読み取れないため、チェックを外してください。"
   },
   "user_excludes": {
     "message": "ユーザー @exclude"
+  },
+  "user_includes": {
+    "message": "ユーザー @include"
   },
   "user_matches": {
     "message": "ユーザー @match"
@@ -270,20 +297,5 @@
   },
   "xhr_no_url": {
     "message": "GM.xmlHttpRequest:「URL」が指定されていません。"
-  },
-  "back": {
-    "message": "戻る"
-  },
-  "help": {
-    "message": "ヘルプ"
-  },
-  "editor": {
-    "message": "エディター"
-  },
-  "use_enhanced_editor": {
-    "message": "改良版のエディタを使用"
-  },
-  "use_enhanced_editor_explain": {
-    "message": "スクリーンリーダーを利用している場合、改良版エディターを読み取れないため、チェックを外してください。"
   }
 }

@@ -9,8 +9,14 @@
   "SCRIPT_does_not_grant_METHOD": {
     "message": "$1 no @grant el método $2"
   },
+  "auto_update_disabled": {
+    "message": "Actualización automática desactivada"
+  },
   "auto_update_enabled": {
     "message": "Actualización automática habilitada"
+  },
+  "back": {
+    "message": "Atrás"
   },
   "backup_export": {
     "message": "Exportar copia de seguridad..."
@@ -42,6 +48,9 @@
   "close": {
     "message": "Cerrar"
   },
+  "confirm_update_edited": {
+    "message": "¿Ha editado este script, realmente desea actualizarlo?"
+  },
   "description": {
     "message": "Descripción:"
   },
@@ -65,6 +74,12 @@
   },
   "edit": {
     "message": "Editar"
+  },
+  "editor": {
+    "message": "Editor"
+  },
+  "editor_options": {
+    "message": "Opciones del editor"
   },
   "enabled": {
     "message": "Habilitado"
@@ -95,6 +110,12 @@
   },
   "gm_opentab_bad_URL": {
     "message": "GM.openInTab: No es posible entender la URL: $1"
+  },
+  "gm_rmc_bad_access_key": {
+    "message": "GM.registerMenuCommand: \"accessKey\" debe ser un solo carácter"
+  },
+  "gm_rmc_bad_command_func": {
+    "message": "GM.registerMenuCommand: \"commandFunc\" debe ser una función"
   },
   "gm_script_id": {
     "message": "[Greasemonkey script $1]"
@@ -130,6 +151,9 @@
   "greasemonkey_wiki": {
     "message": "Wiki de Greasemonkey"
   },
+  "help": {
+    "message": "Ayuda"
+  },
   "homepage": {
     "message": "Sitio web"
   },
@@ -151,6 +175,9 @@
   "install_failed": {
     "message": "Ha fallado la instalación del script de usuario"
   },
+  "last_updated": {
+    "message": "Última actualización:"
+  },
   "malicious_user_scripts": {
     "message": "Los scripts de usuario malicioso pueden violar tu privacidad, robar tus datos y actuar por ti sin tu conocimiento."
   },
@@ -160,8 +187,14 @@
   "new_user_script": {
     "message": "Nuevo script de usuario..."
   },
+  "only_use_these": {
+    "message": "Usar solo estos"
+  },
   "open_editor_after": {
     "message": "Abrir el editor después de terminar la instalación"
+  },
+  "options": {
+    "message": "Opciones:"
   },
   "other_user_scripts": {
     "message": "Otros scripts de usuario"
@@ -202,8 +235,50 @@
   "unnamed_script_RAND": {
     "message": "Script sin nombre $1"
   },
+  "update_disabled_bad_version": {
+    "message": "No se puede actualizar con un formato de @version inválido."
+  },
+  "update_disabled_no_version": {
+    "message": "No se puede actualizar sin @version."
+  },
+  "update_disabled_url": {
+    "message": "No se puede actualizar sin una URL de descarga conocida."
+  },
   "update_now": {
     "message": "Actualizar ahora"
+  },
+  "update_result_error": {
+    "message": "Error al buscar actualizaciones."
+  },
+  "update_result_noupdate": {
+    "message": "No hay una versión más reciente disponible."
+  },
+  "update_result_updated": {
+    "message": "Actualizado correctamente."
+  },
+  "use_enhanced_editor": {
+    "message": "Usar editor mejorado"
+  },
+  "use_enhanced_editor_explain": {
+    "message": "Los usuarios de lectores de pantalla deben desactivar esto, ya que el editor de código mejorado no es accesible."
+  },
+  "user_excludes": {
+    "message": "Exclusiones de usuario"
+  },
+  "user_includes": {
+    "message": "Inclusiones de usuario"
+  },
+  "user_matches": {
+    "message": "Coincidencias de usuario"
+  },
+  "user_script_commands": {
+    "message": "Comandos de scripts de usuario"
+  },
+  "user_script_commands_button": {
+    "message": "Comandos de scripts de usuario..."
+  },
+  "user_script_options": {
+    "message": "Opciones de scripts de usuario"
   },
   "user_scripts_for_this_tab": {
     "message": "Scripts de usuario para esta pestaña"

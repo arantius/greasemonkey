@@ -15,6 +15,9 @@
   "auto_update_enabled": {
     "message": "Automatische Aktualisierung aktiviert"
   },
+  "back": {
+    "message": "Zurück"
+  },
   "backup_export": {
     "message": "Exportieren..."
   },
@@ -72,6 +75,12 @@
   "edit": {
     "message": "Bearbeiten"
   },
+  "editor": {
+    "message": "Editor"
+  },
+  "editor_options": {
+    "message": "Editor-Optionen"
+  },
   "enabled": {
     "message": "Aktiviert"
   },
@@ -101,6 +110,12 @@
   },
   "gm_opentab_bad_URL": {
     "message": "GM.openInTab: Ungültige URL: $1"
+  },
+  "gm_rmc_bad_access_key": {
+    "message": "GM.registerMenuCommand: „accessKey“ muss ein einzelnes Zeichen sein"
+  },
+  "gm_rmc_bad_command_func": {
+    "message": "GM.registerMenuCommand: „commandFunc“ muss eine Funktion sein"
   },
   "gm_script_id": {
     "message": "[Greasemonkey Benutzerskript $1]"
@@ -135,6 +150,9 @@
   },
   "greasemonkey_wiki": {
     "message": "Greasemonkey Wiki"
+  },
+  "help": {
+    "message": "Hilfe"
   },
   "homepage": {
     "message": "Homepage"
@@ -217,6 +235,15 @@
   "unnamed_script_RAND": {
     "message": "Unbenanntes Skript $1"
   },
+  "update_disabled_bad_version": {
+    "message": "Update nicht möglich: Ungültiges @version-Format."
+  },
+  "update_disabled_no_version": {
+    "message": "Update nicht möglich: Keine @version vorhanden."
+  },
+  "update_disabled_url": {
+    "message": "Update nicht möglich: Keine Download-URL bekannt."
+  },
   "update_now": {
     "message": "Jetzt aktualisieren"
   },
@@ -229,14 +256,26 @@
   "update_result_updated": {
     "message": "Erfolgreich aktualisiert."
   },
-  "user_includes": {
-    "message": "Benutzerdefinierte Includes"
+  "use_enhanced_editor": {
+    "message": "Erweiterten Editor verwenden"
+  },
+  "use_enhanced_editor_explain": {
+    "message": "Nutzer von Screenreadern sollten dies deaktivieren, da der erweiterte Code-Editor nicht barrierefrei ist."
   },
   "user_excludes": {
     "message": "Benutzerdefinierte Excludes"
   },
+  "user_includes": {
+    "message": "Benutzerdefinierte Includes"
+  },
   "user_matches": {
     "message": "Benutzerdefinierte Matches"
+  },
+  "user_script_commands": {
+    "message": "Benutzerskript-Befehle"
+  },
+  "user_script_commands_button": {
+    "message": "Benutzerskript-Befehle..."
   },
   "user_script_options": {
     "message": "Benutzerskript-Optionen"

@@ -15,6 +15,9 @@
   "auto_update_enabled": {
     "message": "Автообновление включено"
   },
+  "back": {
+    "message": "Назад"
+  },
   "backup_export": {
     "message": "Экспорт резервной копии..."
   },
@@ -72,6 +75,12 @@
   "edit": {
     "message": "Редактировать"
   },
+  "editor": {
+    "message": "Редактор"
+  },
+  "editor_options": {
+    "message": "Настройки редактора"
+  },
   "enabled": {
     "message": "Включён"
   },
@@ -101,6 +110,12 @@
   },
   "gm_opentab_bad_URL": {
     "message": "GM.openInTab: Не удалось распознать URL-адрес: $1"
+  },
+  "gm_rmc_bad_access_key": {
+    "message": "GM.registerMenuCommand: \"accessKey\" должен быть одним символом"
+  },
+  "gm_rmc_bad_command_func": {
+    "message": "GM.registerMenuCommand: \"commandFunc\" должен быть функцией"
   },
   "gm_script_id": {
     "message": "[Greasemonkey скрипт $1]"
@@ -135,6 +150,9 @@
   },
   "greasemonkey_wiki": {
     "message": "Wiki-страница"
+  },
+  "help": {
+    "message": "Справка"
   },
   "homepage": {
     "message": "Домашняя страница"
@@ -217,6 +235,15 @@
   "unnamed_script_RAND": {
     "message": "Скрипт БезИмени $1"
   },
+  "update_disabled_bad_version": {
+    "message": "Невозможно обновить: недопустимый формат @version."
+  },
+  "update_disabled_no_version": {
+    "message": "Невозможно обновить: отсутствует @version."
+  },
+  "update_disabled_url": {
+    "message": "Невозможно обновить: неизвестная URL для загрузки."
+  },
   "update_now": {
     "message": "Обновить"
   },
@@ -229,14 +256,26 @@
   "update_result_updated": {
     "message": "Успешно обновлён."
   },
-  "user_includes": {
-    "message": "Пользовательские включения"
+  "use_enhanced_editor": {
+    "message": "Использовать улучшенный редактор"
+  },
+  "use_enhanced_editor_explain": {
+    "message": "Пользователям программ чтения с экрана следует отключить это, так как улучшенный редактор кода недоступен для чтения."
   },
   "user_excludes": {
     "message": "Пользовательские исключения"
   },
+  "user_includes": {
+    "message": "Пользовательские включения"
+  },
   "user_matches": {
     "message": "Пользовательские соответствия"
+  },
+  "user_script_commands": {
+    "message": "Команды пользовательских скриптов"
+  },
+  "user_script_commands_button": {
+    "message": "Команды пользовательских скриптов..."
   },
   "user_script_options": {
     "message": "Параметры скрипта"
