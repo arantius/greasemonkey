@@ -223,6 +223,15 @@
   "unnamed_script_RAND": {
     "message": "未命名的指令稿 $1"
   },
+  "update_disabled_url": {
+    "message": "由於沒有已知的下載網址，無法進行更新。"
+  },
+  "update_disabled_no_version": {
+    "message": "若未指定 @version，則無法進行更新。"
+  },
+  "update_disabled_bad_version": {
+    "message": "無法更新，因為 @version 格式不正確。"
+  },
   "update_now": {
     "message": "立刻更新"
   },
