@@ -1,94 +1,5 @@
 'use strict';
 let gUserScript = null;
-
-/**
- * A very simple editor based on a textarea.
- * This is needed by screen reader users, as CodeMirror is unfortunately not
- * accessible.
- * This class simluates the parts of the CodeMirror API we need.
- */
-class SimpleEditor {
-  constructor(element) {
-    this._doc = null;
-    this._onChangeExternal = null;
-    this._onSwapDoc = null;
-    this._textarea = document.createElement("textarea");
-    this._textarea.style["white-space"] = "pre-wrap";
-    this._textarea.addEventListener("input", this._onChange.bind(this));
-    this._textarea.addEventListener("keydown", this._onKeyDown.bind(this));
-    element.appendChild(this._textarea);
-  }
-
-  getInputField() {
-    return this._textarea;
-  }
-
-  focus() {
-    this._textarea.focus();
-  }
-
-  swapDoc(doc) {
-    this._doc = doc;
-    this._textarea.value = doc.getValue();
-    if (this._onSwapDoc) {
-      this._onSwapDoc(doc);
-    }
-  }
-
-  on(name, handler) {
-    if (name == "change") {
-      this._onChangeExternal = handler;
-    } else if (name == "swapDoc") {
-      this._onSwapDoc = handler;
-    }
-  }
-
-  execCommand(command) {
-    if (command == "save") {
-      onSave();
-    }
-  }
-
-  _onChange() {
-    if (this._doc) {
-      this._doc._currentValue = this._textarea.value;
-    }
-    if (this._onChangeExternal) {
-      this._onChangeExternal();
-    }
-  }
-
-  _onKeyDown(event) {
-    if (event.ctrlKey && event.key == "s") {
-      event.preventDefault();
-      this.execCommand("save");
-    }
-  }
-}
-
-class SimpleEditorDoc {
-  constructor(content, type) {
-    this._savedValue = content;
-    this._currentValue = content;
-  }
-
-  getValue() {
-    return this._currentValue;
-  }
-
-  isClean() {
-    return this._currentValue == this._savedValue;
-  }
-
-  markClean() {
-    this._savedValue = this._currentValue;
-  }
-
-  getMode() {
-    return {};
-  }
-}
-
 let modalTimer = null;
 
 const userScriptUuid = location.hash.substr(1);
@@ -291,6 +202,98 @@ document.getElementById('options').addEventListener('click', event => {
     browser.storage.local.set(save);
   }
 });
+
+///////////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * A very simple editor based on a textarea.
+ * This is needed by screen reader users, as CodeMirror is unfortunately not
+ * accessible.
+ * This class simluates the parts of the CodeMirror API we need.
+ */
+class SimpleEditor {
+  constructor(element) {
+    this._doc = null;
+    this._onChangeExternal = null;
+    this._onSwapDoc = null;
+    this._textarea = document.createElement("textarea");
+    this._textarea.style["white-space"] = "pre-wrap";
+    this._textarea.addEventListener("input", this._onChange.bind(this));
+    this._textarea.addEventListener("keydown", this._onKeyDown.bind(this));
+    element.appendChild(this._textarea);
+  }
+
+  getInputField() {
+    return this._textarea;
+  }
+
+  focus() {
+    this._textarea.focus();
+  }
+
+  swapDoc(doc) {
+    this._doc = doc;
+    this._textarea.value = doc.getValue();
+    if (this._onSwapDoc) {
+      this._onSwapDoc(doc);
+    }
+  }
+
+  on(name, handler) {
+    if (name == "change") {
+      this._onChangeExternal = handler;
+    } else if (name == "swapDoc") {
+      this._onSwapDoc = handler;
+    }
+  }
+
+  execCommand(command) {
+    if (command == "save") {
+      onSave();
+    }
+  }
+
+  _onChange() {
+    if (this._doc) {
+      this._doc._currentValue = this._textarea.value;
+    }
+    if (this._onChangeExternal) {
+      this._onChangeExternal();
+    }
+  }
+
+  _onKeyDown(event) {
+    if (event.ctrlKey && event.key == "s") {
+      event.preventDefault();
+      this.execCommand("save");
+    }
+  }
+}
+
+class SimpleEditorDoc {
+  constructor(content, type) {
+    this._savedValue = content;
+    this._currentValue = content;
+  }
+
+  getValue() {
+    return this._currentValue;
+  }
+
+  isClean() {
+    return this._currentValue == this._savedValue;
+  }
+
+  markClean() {
+    this._savedValue = this._currentValue;
+  }
+
+  getMode() {
+    return {};
+  }
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
