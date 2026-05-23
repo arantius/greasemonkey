@@ -411,17 +411,18 @@ function navigateToScript(uuid) {
 function newUserScript() {
   let r = Math.floor(Math.random() * 900000 + 100000);
   let name = _('unnamed_script_RAND', r);
-  let include = '';
+  let match_url = '*';
   let active_tabs = chrome.tabs
       .query({'active': true, 'currentWindow': true});
-  if (active_tabs && active_tabs[0] && active_tabs[0].url) {
-      include = `// @include  ${active_tabs[0].url}\n`;
+  if (active_tabs[0]?.url) {
+      match_url = active_tabs[0].url;
   }
-  let scriptSource = `// ==UserScript==
+  let scriptSource =
+`// ==UserScript==
 // @name     ${name}
 // @version  1
-` + include +
-`// @grant    none
+// @match    ${match_url}
+// @grant    none
 // ==/UserScript==`;
   let downloader
       = new UserScriptDownloader().setScriptContent(scriptSource);
