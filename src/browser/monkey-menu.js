@@ -411,12 +411,9 @@ function navigateToScript(uuid) {
 function newUserScript() {
   let r = Math.floor(Math.random() * 900000 + 100000);
   let name = _('unnamed_script_RAND', r);
-  let match_url = '*';
   let active_tabs = chrome.tabs
       .query({'active': true, 'currentWindow': true});
-  if (active_tabs[0]?.url) {
-      match_url = active_tabs[0].url;
-  }
+  let match_url = active_tabs[0]?.url || '<all_urls>';
   let scriptSource =
 `// ==UserScript==
 // @name     ${name}
