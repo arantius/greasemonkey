@@ -47,7 +47,11 @@ async function addResourceTab(resource) {
   resourceTab.textContent = resource.name;
   tabs.appendChild(resourceTab);
   editorTabs.push(resourceTab);
-  editorDocs.push(createDoc(await resource.blob.text(), resource.mimetype));
+
+  let mode = null;
+  if (resource.url.match(/\.css(\?|$)/)) mode = 'css';
+  editorDocs.push(createDoc(await resource.blob.text(), mode));
+
   editorUrls.push(resource.url);
 }
 
