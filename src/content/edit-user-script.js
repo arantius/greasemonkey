@@ -188,50 +188,35 @@ document.addEventListener('click', event => {
 });
 
 
+const EDITOR_OPTIONS_MAP = {
+  'toggle-continue-comments':
+      {'prop': 'continueComments', 'editorKey': 'continueComments' },
+  'toggle-line-numbers':
+      {'prop': 'showLineNumbers', 'editorKey': 'lineNumbers' },
+  'toggle-match-brackets':
+      {'prop': 'matchBrackets', 'editorKey': 'matchBrackets' },
+  'toggle-style-active-line':
+      {'prop': 'styleActiveLine', 'editorKey': 'styleActiveLine' },
+};
 document.getElementById('options').addEventListener('click', event => {
   let el = event.target;
   while (el && el.tagName != 'MENUITEM') el = el.parentNode;
   if (!el) return;
 
-  let needsSave = false;
-  switch (el.id) {
-    case 'toggle-continue-comments':
-      gTplData.editorOptions.continueComments = !gTplData.editorOptions.continueComments;
-      if (editor.setOption) {
-        editor.setOption('continueComments', gTplData.editorOptions.continueComments);
-      }
-      needsSave = true;
-      break;
-    case 'toggle-line-numbers':
-      gTplData.editorOptions.showLineNumbers = !gTplData.editorOptions.showLineNumbers;
-      if (editor.setOption) {
-        editor.setOption('lineNumbers', gTplData.editorOptions.showLineNumbers);
-      }
-      needsSave = true;
-      break;
-    case 'toggle-match-brackets':
-      gTplData.editorOptions.matchBrackets = !gTplData.editorOptions.matchBrackets;
-      if (editor.setOption) {
-        editor.setOption('matchBrackets', gTplData.editorOptions.matchBrackets);
-      }
-      needsSave = true;
-      break;
-    case 'toggle-style-active-line':
-      gTplData.editorOptions.styleActiveLine = !gTplData.editorOptions.styleActiveLine;
-      if (editor.setOption) {
-        editor.setOption('styleActiveLine', gTplData.editorOptions.styleActiveLine);
-      }
-      needsSave = true;
-      break;
-  }
+  const config = EDITOR_OPTIONS_MAP[el.id];
+  if (config) {
+    gTplData.editorOptions[config.prop] = !gTplData.editorOptions[config.prop];
+    if (editor.setOption) {
+      editor.setOption(config.editorKey, gTplData.editorOptions[config.prop]);
+    }
 
-  if (needsSave) {
     // Marshall template bound values down to primitives.
-    let save = {'editorOptions': {
-      'showLineNumbers': !!gTplData.editorOptions.showLineNumbers,
-      'matchBrackets': !!gTplData.editorOptions.matchBrackets,
-    }};
-    browser.storage.local.set(save);
+    let save = {};
+    for (const key in EDITOR_OPTIONS_MAP) {
+      const config = EDITOR_OPTIONS_MAP[key];
+      save[config.prop] = !!gTplData.editorOptions[config.prop];
+    }
+    browser.storage.local.set({'editorOptions': save});
   }
 });
 
