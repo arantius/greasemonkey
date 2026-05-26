@@ -23,12 +23,33 @@
 <link rel="stylesheet" href="/third-party/codemirror/addon/dialog/dialog.css">
 
 <script src="/third-party/codemirror/addon/comment/comment.js"></script>
+<script src="/third-party/codemirror/addon/comment/continuecomment.js"></script>
+
 <script src="/third-party/codemirror/addon/edit/matchbrackets.js"></script>
+
+<script src="/third-party/codemirror/addon/fold/brace-fold.js"></script>
+<script src="/third-party/codemirror/addon/fold/comment-fold.js"></script>
+<script src="/third-party/codemirror/addon/fold/indent-fold.js"></script>
+<script src="/third-party/codemirror/addon/fold/foldcode.js"></script>
+<script src="/third-party/codemirror/addon/fold/foldgutter.js"></script>
+<link rel="stylesheet" href="/third-party/codemirror/addon/fold/foldgutter.css">
+
+<script src="/third-party/codemirror/addon/hint/anyword-hint.js"></script>
+<script src="/third-party/codemirror/addon/hint/css-hint.js"></script>
+<script src="/third-party/codemirror/addon/hint/javascript-hint.js"></script>
+<script src="/third-party/codemirror/addon/hint/show-hint.js"></script>
+<link rel="stylesheet" href="/third-party/codemirror/addon/hint/show-hint.css">
+
 <script src="/third-party/codemirror/addon/scroll/annotatescrollbar.js"></script>
-<script src="/third-party/codemirror/addon/search/searchcursor.js"></script>
-<script src="/third-party/codemirror/addon/search/search.js"></script>
-<script src="/third-party/codemirror/addon/search/match-highlighter.js"></script>
+
+<script src="/third-party/codemirror/addon/selection/active-line.js"></script>
+
 <script src="/third-party/codemirror/addon/search/jump-to-line.js"></script>
+<script src="/third-party/codemirror/addon/search/matchesonscrollbar.js"></script>
+<link rel="stylesheet" href="/third-party/codemirror/addon/search/matchesonscrollbar.css">
+<script src="/third-party/codemirror/addon/search/match-highlighter.js"></script>
+<script src="/third-party/codemirror/addon/search/search.js"></script>
+<script src="/third-party/codemirror/addon/search/searchcursor.js"></script>
 
 <script src="/third-party/codemirror/addon/lint/lint.js"></script>
 <link rel="stylesheet" href="/third-party/codemirror/addon/lint/lint.css">
@@ -85,13 +106,21 @@
   <div id="options" class="command-item" rv-title="'editor_options'|i18n" role="button">
     <i class="icon fa fa-cogs" aria-hidden="true"></i>
     <menu title="" rv-show="optionsMenuVisible">
-      <menuitem id="toggle-line-numbers">
-        <i class="icon fa" rv-class-fa-check="editorOptions.showLineNumbers"></i>
-        Show line numbers
+      <menuitem id="toggle-continue-comments">
+        <i class="icon fa" rv-class-fa-check="editorOptions.continueComments"></i>
+        Continue comments
       </menuitem>
       <menuitem id="toggle-match-brackets">
         <i class="icon fa" rv-class-fa-check="editorOptions.matchBrackets"></i>
         Highlight matching brackets
+      </menuitem>
+      <menuitem id="toggle-line-numbers">
+        <i class="icon fa" rv-class-fa-check="editorOptions.showLineNumbers"></i>
+        Show line numbers
+      </menuitem>
+      <menuitem id="toggle-style-active-line">
+        <i class="icon fa" rv-class-fa-check="editorOptions.styleActiveLine"></i>
+        Style active line
       </menuitem>
     </menu>
   </div>

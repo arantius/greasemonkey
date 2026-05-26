@@ -15,8 +15,10 @@ const gTplData = {
     'title': _('saving'),
   },
   'editorOptions': {
-    'showLineNumbers': true,
+    'continueComments': true,
     'matchBrackets': true,
+    'showLineNumbers': true,
+    'styleActiveLine': true,
   },
   'optionsMenuVisible': false,
 };
@@ -72,9 +74,11 @@ let createDoc;
   if (gmOptions.useCodeMirror) {
     const macKeymap = CodeMirror.normalizeKeyMap({
       'Cmd-/': 'toggleComment',
+      'Cmd-Space': 'autocomplete',
     });
     const pcKeymap = CodeMirror.normalizeKeyMap({
       'Ctrl-/': 'toggleComment',
+      'Ctrl-Space': 'autocomplete',
     });
 
     const isMacKeymap = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
@@ -82,9 +86,12 @@ let createDoc;
     editor = CodeMirror(
         editorElem,
         {
+          'continueComments': gTplData.editorOptions.continueComments,
           'extraKeys': isMacKeymap ? macKeymap : pcKeymap,
+          'foldGutter': true,
           'lineNumbers': gTplData.editorOptions.showLineNumbers,
           'matchBrackets': gTplData.editorOptions.matchBrackets,
+          'styleActiveLine': gTplData.editorOptions.styleActiveLine,
           'tabSize': 2,
         });
 
@@ -109,9 +116,15 @@ let createDoc;
 
   editor.on('swapDoc', doc => {
     if (doc.getMode().name == 'javascript') {
-      doc.setOption('gutters', ['CodeMirror-lint-markers']);
+      doc.setOption('gutters', [
+          'CodeMirror-lint-markers', 'CodeMirror-linenumbers',
+          'CodeMirror-foldgutter']);
       doc.setOption('lint', true);
       doc.performLint();
+    } else {
+      doc.setOption('gutters', [
+          'CodeMirror-linenumbers', 'CodeMirror-foldgutter']);
+      doc.setOption('lint', false);
     }
   });
 
@@ -174,6 +187,7 @@ document.addEventListener('click', event => {
   }
 });
 
+
 document.getElementById('options').addEventListener('click', event => {
   let el = event.target;
   while (el && el.tagName != 'MENUITEM') el = el.parentNode;
@@ -181,6 +195,13 @@ document.getElementById('options').addEventListener('click', event => {
 
   let needsSave = false;
   switch (el.id) {
+    case 'toggle-continue-comments':
+      gTplData.editorOptions.continueComments = !gTplData.editorOptions.continueComments;
+      if (editor.setOption) {
+        editor.setOption('continueComments', gTplData.editorOptions.continueComments);
+      }
+      needsSave = true;
+      break;
     case 'toggle-line-numbers':
       gTplData.editorOptions.showLineNumbers = !gTplData.editorOptions.showLineNumbers;
       if (editor.setOption) {
@@ -192,6 +213,13 @@ document.getElementById('options').addEventListener('click', event => {
       gTplData.editorOptions.matchBrackets = !gTplData.editorOptions.matchBrackets;
       if (editor.setOption) {
         editor.setOption('matchBrackets', gTplData.editorOptions.matchBrackets);
+      }
+      needsSave = true;
+      break;
+    case 'toggle-style-active-line':
+      gTplData.editorOptions.styleActiveLine = !gTplData.editorOptions.styleActiveLine;
+      if (editor.setOption) {
+        editor.setOption('styleActiveLine', gTplData.editorOptions.styleActiveLine);
       }
       needsSave = true;
       break;
@@ -301,7 +329,6 @@ class SimpleEditorDoc {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-// TODO: Keyboard accessibility?
 tabs.addEventListener('click', event => {
   if (event.target.classList.contains('tab')) {
     let selectedTab = document.querySelector('#tabs .tab.active');
