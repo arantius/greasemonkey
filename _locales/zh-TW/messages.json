@@ -226,6 +226,18 @@
   "this_is_a_greasemonkey_user_script": {
     "message": "這是 Greasemonkey 使用者指令稿。點按安裝以開始使用它。"
   },
+  "toggle_continue_comments": {
+    "message": "繼續註解"
+  },
+  "toggle_highlight_matching_brackets": {
+    "message": "高亮匹配的括號"
+  },
+  "toggle_show_line_numbers": {
+    "message": "顯示行號"
+  },
+  "toggle_style_active_line": {
+    "message": "高亮活動行"
+  },
   "undo_uninstall": {
     "message": "復原解除安裝"
   },

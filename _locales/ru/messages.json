@@ -226,6 +226,18 @@
   "this_is_a_greasemonkey_user_script": {
     "message": "Это пользовательский скрипт Greasemonkey. Нажмите «Установить», чтобы использовать его."
   },
+  "toggle_continue_comments": {
+    "message": "Продолжать комментарии"
+  },
+  "toggle_highlight_matching_brackets": {
+    "message": "Подсвечивать парные скобки"
+  },
+  "toggle_show_line_numbers": {
+    "message": "Показывать номера строк"
+  },
+  "toggle_style_active_line": {
+    "message": "Выделять активную строку"
+  },
   "undo_uninstall": {
     "message": "Отменить удаление"
   },

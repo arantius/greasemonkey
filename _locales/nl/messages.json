@@ -226,6 +226,18 @@
   "this_is_a_greasemonkey_user_script": {
     "message": "Dit is een Greasemonkey-gebruikersscript. Klik op Installeren om het te gebruiken."
   },
+  "toggle_continue_comments": {
+    "message": "Reacties voortzetten"
+  },
+  "toggle_highlight_matching_brackets": {
+    "message": "Overeenkomende haakjes markeren"
+  },
+  "toggle_show_line_numbers": {
+    "message": "Regelnummers tonen"
+  },
+  "toggle_style_active_line": {
+    "message": "Actieve regel markeren"
+  },
   "undo_uninstall": {
     "message": "De-installatie ongedaan maken"
   },

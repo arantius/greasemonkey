@@ -226,6 +226,18 @@
   "this_is_a_greasemonkey_user_script": {
     "message": "これは Greasemonkey ユーザースクリプトです。利用する場合は、インストールボタンをクリックします。"
   },
+  "toggle_continue_comments": {
+    "message": "コメントを継続"
+  },
+  "toggle_highlight_matching_brackets": {
+    "message": "対応する括弧を強調表示"
+  },
+  "toggle_show_line_numbers": {
+    "message": "行番号を表示"
+  },
+  "toggle_style_active_line": {
+    "message": "アクティブな行を強調表示"
+  },
   "undo_uninstall": {
     "message": "アンインストールを取り消す"
   },

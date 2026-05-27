@@ -226,6 +226,18 @@
   "this_is_a_greasemonkey_user_script": {
     "message": "Éste es una script de usuario de Greasemonkey. Haz clic en instalar para utilizarlo."
   },
+  "toggle_continue_comments": {
+    "message": "Continuar comentarios"
+  },
+  "toggle_highlight_matching_brackets": {
+    "message": "Resaltar paréntesis coincidentes"
+  },
+  "toggle_show_line_numbers": {
+    "message": "Mostrar números de línea"
+  },
+  "toggle_style_active_line": {
+    "message": "Resaltar línea activa"
+  },
   "undo_uninstall": {
     "message": "Deshacer desinstalación"
   },
