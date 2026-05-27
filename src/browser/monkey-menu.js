@@ -411,9 +411,14 @@ function navigateToScript(uuid) {
 function newUserScript() {
   let r = Math.floor(Math.random() * 900000 + 100000);
   let name = _('unnamed_script_RAND', r);
-  let scriptSource = `// ==UserScript==
+  let active_tabs = chrome.tabs
+      .query({'active': true, 'currentWindow': true});
+  let match_url = active_tabs[0]?.url || '<all_urls>';
+  let scriptSource =
+`// ==UserScript==
 // @name     ${name}
 // @version  1
+// @match    ${match_url}
 // @grant    none
 // ==/UserScript==`;
   let downloader
