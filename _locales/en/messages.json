@@ -292,6 +292,18 @@
   "editor_options": {
     "message": "Editor Options"
   },
+  "toggle_continue_comments": {
+    "message": "Continue comments"
+  },
+  "toggle_highlight_matching_brackets": {
+    "message": "Highlight matching brackets"
+  },
+  "toggle_show_line_numbers": {
+    "message": "Show line numbers"
+  },
+  "toggle_style_active_line": {
+    "message": "Style active line"
+  },
   "use_enhanced_editor": {
     "message": "Use enhanced editor"
   },
