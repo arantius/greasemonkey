@@ -408,14 +408,17 @@ function navigateToScript(uuid) {
 }
 
 
-function newUserScript() {
+async function newUserScript() {
   let r = Math.floor(Math.random() * 900000 + 100000);
   let name = _('unnamed_script_RAND', r);
-  let active_tabs = chrome.tabs
-      .query({'active': true, 'currentWindow': true});
-  let match_url = active_tabs[0]?.url || '<all_urls>';
-  let scriptSource =
-`// ==UserScript==
+
+  let match_url = '<all_urls>';
+  try {
+    let tab = await browser.tabs.getCurrent();
+    match_url = tab.url;
+  } catch (e) { }
+
+  let scriptSource = `// ==UserScript==
 // @name     ${name}
 // @version  1
 // @match    ${match_url}
