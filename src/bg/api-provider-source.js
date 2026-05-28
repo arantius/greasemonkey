@@ -286,20 +286,28 @@ function GM_xmlHttpRequest(d) {
     }
     let o = msg.src == 'up' ? d.upload : d;
     let cb = o['on' + msg.type];
+    msg.responseState.context = d.context;
     if (cb) cb(msg.responseState);
   });
 
-  let noCallbackDetails = {};
-  Object.keys(d).forEach(k => {
-    let v = d[k];
-    noCallbackDetails[k] = v;
-    if ('function' == typeof v) noCallbackDetails[k] = true;
-  });
-  noCallbackDetails.upload = {};
-  d.upload && Object.keys(k => noCallbackDetails.upload[k] = true);
-  noCallbackDetails.url = url.href;
+  // Since `d` is user controlled, filter it down to values safe to pass via
+  // structured cloning.
+  // (See https://github.com/greasemonkey/greasemonkey/issues/2701 .)
+  // Do not pass `context` through at all, and downcast functions.  (E.g.
+  // the background scripts needs to know which `upload` handlers to register,
+  // but the helper immediately above uses those callbacks directly.)
+  // Since we only expect strings and other primitives to remain, use JSON
+  // to force the structure down.
+  function sanitizer(k, v) {
+    if ('context' == k) return undefined;
+    if ('url' == k) return url.href;
+    if ('function' == typeof v) return true;
+    return v;
+  }
+  let details = JSON.parse(JSON.stringify(d, sanitizer));
+  if (!details.upload) details.upload = {};
   port.postMessage({
-    'details': noCallbackDetails,
+    'details': details,
     'name': 'open',
     'uuid': _uuid,
   });
