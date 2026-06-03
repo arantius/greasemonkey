@@ -182,6 +182,15 @@ Response:
 
 * `details` The details object from an `EditableUserScript`.
 
+# UserScriptExecute
+Sent by: `content/execute.js`
+Received by: `bg/on-user-script-execute.js`
+
+Triggered when content script triggers script execution for a given phase.
+Data:
+
+* `runAt` The phase at which to execute (start, end, or idle).
+
 # UserScriptInstall
 Sent by: `downloader.js`
 Received by: `bg/user-script-registry.js`

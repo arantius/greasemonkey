@@ -32,19 +32,19 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["src/content/execute.js", "src/content/execute-start.run.js"],
+      "js": ["src/content/execute-start.run.js"],
       "run_at": "document_start",
       "all_frames": true
     },
     {
       "matches": ["<all_urls>"],
-      "js": ["src/content/execute.js", "src/content/execute-end.run.js"],
+      "js": ["src/content/execute-end.run.js"],
       "run_at": "document_end",
       "all_frames": true
     },
     {
       "matches": ["<all_urls>"],
-      "js": ["src/content/execute.js", "src/content/execute-idle.run.js"],
+      "js": ["src/content/execute-idle.run.js"],
       "run_at": "document_idle",
       "all_frames": true
     }
@@ -56,9 +56,9 @@
       "/src/i18n.js",
 
       "/src/bg/api-provider-source.js",
-      "/src/bg/execute.js",
       "/src/bg/export-db.js",
       "/src/bg/on-message.js",
+      "/src/bg/on-user-script-execute.js",
       "/src/bg/on-user-script-menu-command.js",
       "/src/bg/on-user-script-notification.js",
       "/src/bg/on-user-script-open-in-tab.js",

@@ -1,3 +1,3 @@
 'use strict';
 
-executeUserscript('end');
+chrome.runtime.sendMessage({'name': 'UserScriptExecute', 'runAt': 'end'});

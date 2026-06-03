@@ -1,3 +1,3 @@
 'use strict';
 
-executeUserscript('idle');
+chrome.runtime.sendMessage({'name': 'UserScriptExecute', 'runAt': 'idle'});
