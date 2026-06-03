@@ -29,6 +29,27 @@
     "default_title": "__MSG_extName__"
   },
 
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/execute.js", "src/content/execute-start.run.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/execute.js", "src/content/execute-end.run.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/execute.js", "src/content/execute-idle.run.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+
   "background": {
     "persistent": true,
     "scripts": [
@@ -62,7 +83,6 @@
       "/third-party/compare-versions/index.js",
       "/third-party/jszip/jszip.min.js",
 
-      "/src/bg/execute.run.js",
       "/src/bg/user-script-detect.run.js",
       "/src/bg/user-script-registry.run.js"
     ]

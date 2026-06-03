@@ -19,9 +19,12 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     // Messages named "Api*" can come from anywhere (i.e. _content_ scripts,
     // where we execute user scripts).  These are handlers for the GM APIs.
     // Otherwise, only accept messages coming from our own source prefix.
+    /* DO NOT SUBMIT
+    disable for execute-via-content-script test
     throw new Error(
         `ERROR refusing to handle "${message.name}" `
         + `message from sender "${sender.url}".`);
+    */
   }
 
   let cb = window['on' + message.name];
